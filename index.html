@@ -1458,7 +1458,7 @@ function watchList(a, watch){
 }
 function hasAds(watch){ return TAG_OK.test(watch.amazonTag.trim()) || AFF_SERVICES.some(s => AFF_OK.test((watch.aff[s.key] || "").trim())); }
 /* シェアに付けるこのサイトのアドレス */
-const DEFAULT_SITE_URL = "https://claude.ai/artifact/LBAjoMZh1rQ6hFUkmyRuaq";
+const DEFAULT_SITE_URL = "https://anima-shindan.github.io/";
 function shareUrl(){ const u = SITE.siteUrl.trim(); return AFF_OK.test(u) ? u : DEFAULT_SITE_URL; }
 
 const SITE = cleanSite((() => { try { return JSON.parse(document.getElementById("site-data").textContent); } catch (e) { return {}; } })());
