@@ -1192,13 +1192,19 @@ function scene(o){
   return s + "</svg>";
 }
 /* ---------- サイトのデータ（管理ページから保存される） ----------
-   photos: {作品ID: {a: 画像のID, credit: 出典}} / watch: 配信サービスの広告設定 */
+   photos: {作品ID: {a: 画像のID, credit: 出典}}（Claude のページ）または {f: "img/ファイル名", credit}（自分のサイト）
+   watch: 配信サービスの広告設定 */
 const ASSET_ID = /^[A-Za-z0-9_-]{8,64}$/;
+const PHOTO_FILE = /^img\/[a-f0-9]{16}\.(?:jpg|png|webp|gif)$/;
+function photoSrc(p){ return p.f ? p.f : "/_blob/" + p.a; }
 function cleanSite(d){
   d = d && typeof d === "object" ? d : {};
   const photos = {};
   Object.entries(d.photos && typeof d.photos === "object" ? d.photos : {}).forEach(([id, p]) => {
-    if (BY_ID[id] && p && ASSET_ID.test(p.a || "")) photos[id] = { a: p.a, credit: String(p.credit || "").slice(0, 120) };
+    if (!BY_ID[id] || !p) return;
+    const credit = String(p.credit || "").slice(0, 120);
+    if (ASSET_ID.test(p.a || "")) photos[id] = { a: p.a, credit };
+    else if (PHOTO_FILE.test(p.f || "")) photos[id] = { f: p.f, credit };
   });
   const w = d.watch && typeof d.watch === "object" ? d.watch : {};
   const aff = w.aff && typeof w.aff === "object" ? w.aff : {};
@@ -1613,7 +1619,7 @@ function artFor(a){
     const links = found || ["prime", "unext", "dmm"].map(k => Object.assign({ s: BY_SVC[k] }, watchLink(BY_SVC[k], c.a.t, SITE.watch)));
     const anyAd = links.some(l => l.ad);
     return `<article class="rec">
-      <div class="rec-art">${ph ? `<img src="/_blob/${esc(ph.a)}" alt="${esc(c.a.t)}のイメージ画像" loading="lazy" data-id="${esc(c.a.id)}">` : artFor(c.a)}</div>
+      <div class="rec-art">${ph ? `<img src="${esc(photoSrc(ph))}" alt="${esc(c.a.t)}のイメージ画像" loading="lazy" data-id="${esc(c.a.id)}">` : artFor(c.a)}</div>
       <div class="rec-body">
         <div class="rec-top"><span class="match">相性 <b>${c.match}</b>%</span><span class="rec-year">${c.a.y}年〜</span></div>
         <h4 class="rec-title">${esc(c.a.t)}</h4>
@@ -1759,7 +1765,7 @@ function artFor(a){
   function rowHtml(a, i){
     const p = draft.photos[a.id];
     return `<li class="arow" data-id="${esc(a.id)}">
-      <div class="athumb">${p ? `<img src="/_blob/${esc(p.a)}" alt="" loading="lazy">` : "画像なし"}</div>
+      <div class="athumb">${p ? `<img src="${esc(photoSrc(p))}" alt="" loading="lazy">` : "画像なし"}</div>
       <div class="ainfo"><b>${esc(a.t)}</b>
         <label class="sr" for="cr-${i}">${esc(a.t)}の出典</label>
         <input class="acredit" id="cr-${i}" type="text" maxlength="120" placeholder="出典（例：撮影 〇〇 / CC BY 4.0）" value="${p ? esc(p.credit) : ""}" ${p ? "" : "disabled"}>
