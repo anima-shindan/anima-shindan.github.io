@@ -1,0 +1,1977 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ANIMA アニメ診断｜好きなアニメを選ぶだけでタイプとおすすめがわかる</title>
+<meta name="description" content="好きなアニメを選ぶだけで、あなたのアニメタイプと、次に見るおすすめ作品がわかる無料の診断です。205作品から選べて、おすすめ作品を見放題で見られる配信サービスもわかります。">
+<link rel="canonical" href="https://anima-shindan.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ANIMA アニメ診断">
+<meta property="og:title" content="ANIMA アニメ診断">
+<meta property="og:description" content="好きなアニメを選ぶだけで、あなたのアニメタイプと、次に見るおすすめ作品がわかる無料の診断です。205作品から選べて、おすすめ作品を見放題で見られる配信サービスもわかります。">
+<meta property="og:url" content="https://anima-shindan.github.io/">
+<meta property="og:image" content="https://anima-shindan.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FBF7F1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Zen+Maru+Gothic:wght@500;700&family=Quicksand:wght@600;700&display=swap">
+<style>
+/* Layout: デザインC「ポップ × 未来感」。空と街の見出し → こだわり（まるい形）→ 診断メニュー → 作品えらび → 緑の波のフッター。明るい色だけで作る1テーマ */
+:root{
+  --bg:#FBF7F1;
+  --card:#FFFFFF;
+  --ink:#22374B;
+  --muted:#5D6F80;
+  --line:#E8DFD2;
+  --teal:#3F8580;
+  --teal-deep:#2C6662;
+  --teal-soft:#DCEFEA;
+  --orange:#DD6426;
+  --orange-text:#B0511C;
+  --orange-soft:#FDE6D2;
+  --sky:#D8EDF6;
+  --mint:#D6EFE4;
+  --peach:#FDE1C6;
+  --on-dark:#FFFFFF;
+  --danger:#B3261E;
+  --shadow:0 10px 30px rgba(34,55,75,.10);
+  --font-head:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif;
+  --font-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  --font-latin:"Quicksand","Zen Maru Gothic",sans-serif;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:15px;line-height:1.75;overflow-x:clip;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1100px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.deco{position:absolute;pointer-events:none;fill:currentColor}
+
+/* ---------- ヘッダー ---------- */
+.site-head{position:relative;z-index:7;padding-block:14px}
+.pr-bar{position:relative;z-index:7;display:flex;justify-content:center;align-items:center;gap:6px;margin:0;padding:8px 16px 0;font-size:11.5px;line-height:1.5;color:var(--muted);text-align:center}
+.pr-bar[hidden]{display:none}
+.head-in{display:flex;align-items:center;gap:16px}
+.logo{display:flex;align-items:center;gap:8px;margin-right:auto;text-decoration:none;color:var(--teal-deep);font-family:var(--font-latin);font-weight:700;font-size:21px;letter-spacing:.1em}
+.logo svg{width:30px;height:30px}
+.nav{display:flex;gap:26px}
+.nav a{text-decoration:none;font-weight:700;font-size:14px;padding-block:4px}
+.nav a:hover{color:var(--orange-text)}
+.burger{display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;place-items:center;border-radius:12px;color:var(--ink)}
+.burger svg{width:26px;height:26px}
+@media (max-width:720px){
+  .burger{display:grid}
+  .nav{display:none;position:absolute;top:100%;right:max(16px,env(safe-area-inset-right,0px));flex-direction:column;gap:0;background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:8px;min-width:190px}
+  .nav.open{display:flex}
+  .nav a{padding:10px 16px;border-radius:12px}
+  .nav a:hover{background:var(--teal-soft)}
+}
+
+/* ---------- ヒーロー ---------- */
+.hero{position:relative;padding-top:6px}
+.hero-card{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(500px,48vw,580px);border-radius:44px 44px 56px 28px;box-shadow:var(--shadow)}
+.art{position:absolute;inset:0;z-index:-1}
+.art svg,.menu-art svg,.rec-art svg{display:block;width:100%;height:100%}
+.hero-copy{padding:clamp(34px,5.5vw,70px) clamp(24px,5.5vw,70px) 0;max-width:600px}
+.hero h1{font-family:var(--font-head);font-weight:800;font-size:clamp(31px,5vw,54px);line-height:1.38;letter-spacing:.02em;transform:rotate(-3deg);transform-origin:left bottom;text-shadow:0 2px 0 rgba(255,255,255,.55)}
+.hero-sub{margin-top:18px;font-weight:700;font-size:clamp(14px,1.6vw,17px);text-shadow:0 1px 0 rgba(255,255,255,.6)}
+.cta{display:inline-flex;align-items:center;gap:12px;margin-top:28px;background:var(--orange);color:var(--on-dark);font-weight:700;font-size:17px;padding:14px 30px;border-radius:999px;text-decoration:none;box-shadow:0 8px 18px rgba(221,100,38,.32);transition:transform .15s ease}
+.cta:hover{transform:translateY(-2px)}
+.cta span{font-family:var(--font-latin);font-size:20px;line-height:1}
+.wave-bottom{position:absolute;left:0;bottom:-1px;width:100%;height:clamp(36px,5vw,64px);fill:var(--bg)}
+.hero .rocket{width:clamp(48px,6vw,72px);height:auto;right:clamp(8px,4vw,60px);bottom:-10px;color:var(--teal-deep);z-index:2}
+.hero .st1{width:22px;left:2px;top:30%;color:var(--orange)}
+.hero .st2{width:16px;right:30%;bottom:2px;color:var(--teal)}
+
+/* ---------- 見出し ---------- */
+.section{position:relative;padding-top:clamp(64px,8vw,96px)}
+.sec-title{display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;margin-bottom:34px}
+.sec-title h2{font-family:var(--font-head);font-weight:800;font-size:clamp(25px,3.4vw,32px);letter-spacing:.04em}
+.sec-title .en{font-family:var(--font-latin);font-weight:700;font-size:12px;letter-spacing:.24em;color:var(--orange-text);margin-top:2px}
+.squig{width:54px;height:10px;color:var(--orange);margin-top:2px}
+
+/* ---------- こだわり ---------- */
+.concepts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.concept{padding:42px 30px 40px;text-align:center;border-radius:46% 54% 42% 58% / 30% 34% 36% 30%}
+.concept:nth-child(1){background:var(--sky)}
+.concept:nth-child(2){background:var(--mint);border-radius:56% 44% 52% 48% / 34% 28% 32% 36%}
+.concept:nth-child(3){background:var(--peach);border-radius:44% 56% 58% 42% / 28% 36% 30% 34%}
+.concept .icon{width:62px;height:62px;margin:0 auto 10px;color:var(--teal-deep)}
+.concept .num{font-family:var(--font-latin);font-weight:700;font-size:12px;letter-spacing:.16em;color:var(--teal-deep)}
+.concept h3{font-family:var(--font-head);font-weight:800;font-size:19px;margin-top:2px}
+.concept p{font-size:14px;margin-top:8px;max-width:20em;margin-inline:auto}
+.concept-sec .st3{width:20px;right:6%;top:70px;color:var(--teal)}
+.concept-sec .pl{width:46px;left:3%;top:96px;color:var(--orange)}
+
+/* ---------- 診断メニュー ---------- */
+.menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px 24px}
+.menu-item{display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;min-width:0}
+.menu-art{position:relative;width:100%;max-width:100%;aspect-ratio:4/3;border-radius:30px 20px 34px 18px;overflow:hidden;box-shadow:var(--shadow);transition:transform .2s ease}
+.menu-item:nth-child(2n) .menu-art{border-radius:20px 34px 18px 30px}
+.menu-item:hover .menu-art{transform:translateY(-4px) rotate(-1deg)}
+.menu-name{font-family:var(--font-head);font-weight:800;font-size:17px;margin-top:6px}
+.menu-desc{font-size:12.5px;color:var(--muted);line-height:1.5}
+.menu-sec .st4{width:24px;right:4%;top:84px;color:var(--orange)}
+
+/* ---------- 作品えらび ---------- */
+.pick-lead{text-align:center;max-width:32em;margin:-14px auto 0;font-weight:500}
+.count{text-align:center;font-size:13px;color:var(--muted);margin-top:8px;font-variant-numeric:tabular-nums}
+.tools{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;background:var(--bg);padding-block:12px 10px;margin-top:16px;box-shadow:0 6px 12px -10px rgba(34,55,75,.25)}
+.tools-in{display:flex;flex-direction:column;gap:10px}
+.search{position:relative;display:block}
+.search svg{position:absolute;left:16px;top:50%;width:18px;height:18px;transform:translateY(-50%);color:var(--muted)}
+.search input{width:100%;font:inherit;font-size:16px;padding:11px 18px 11px 44px;border:2px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink)}
+.search input:focus{outline:none;border-color:var(--teal)}
+.search input::placeholder{color:var(--muted)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+.chip{flex:none;font:inherit;font-size:13px;font-weight:700;border:1.5px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);padding:5px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:var(--on-dark)}
+.chip .n{margin-left:5px;color:var(--orange-text);font-variant-numeric:tabular-nums}
+.chip[aria-pressed="true"] .n{color:inherit}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:14px;padding-block:20px 10px}
+.card{position:relative;display:flex;flex-direction:column;gap:4px;min-width:0;text-align:left;padding:12px 14px 14px;background:var(--card);color:var(--ink);border:2px solid transparent;border-radius:18px;box-shadow:0 4px 14px rgba(34,55,75,.07);font:inherit;cursor:pointer;transition:transform .14s ease,background-color .14s ease,box-shadow .14s ease}
+.card-meta{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:700}
+.card-genre{color:var(--orange-text)}
+.card-year{color:var(--muted);font-variant-numeric:tabular-nums}
+.card-title{font-family:var(--font-head);font-weight:800;font-size:15px;line-height:1.45;overflow-wrap:anywhere}
+.card-sub{font-size:12px;color:var(--muted)}
+.card[aria-pressed="true"]{background:var(--teal);border-color:var(--teal-deep);color:var(--on-dark);box-shadow:0 8px 18px rgba(63,133,128,.35)}
+.card[aria-pressed="true"] .card-genre,.card[aria-pressed="true"] .card-year,.card[aria-pressed="true"] .card-sub{color:inherit}
+.check{position:absolute;top:-9px;right:-7px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--orange);color:var(--on-dark);box-shadow:0 3px 8px rgba(221,100,38,.4);opacity:0;transform:scale(.3);transition:transform .18s cubic-bezier(.3,1.6,.5,1),opacity .12s ease;pointer-events:none}
+.check svg{width:16px;height:16px}
+.card[aria-pressed="true"] .check{opacity:1;transform:scale(1)}
+@media (hover:hover){.card:hover{transform:translateY(-3px)}}
+.empty{padding:28px 0;color:var(--muted);text-align:center}
+.note{font-size:12.5px;color:var(--muted);padding-block:16px 120px;text-align:center}
+
+/* ---------- 決定バー ---------- */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:8;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));pointer-events:none}
+.bar-in{pointer-events:auto;max-width:760px;margin-inline:auto;display:flex;align-items:center;gap:8px;background:var(--card);border-radius:999px;box-shadow:0 12px 34px rgba(34,55,75,.22);padding:8px 8px 8px 22px}
+.bar-info{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.35}
+.bar-count{font-weight:700;font-size:13px}
+.bar-count b{font-family:var(--font-latin);font-size:22px;color:var(--orange-text);margin-right:3px;font-variant-numeric:tabular-nums}
+.bar-hint{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn{flex:none;font:inherit;font-weight:700;font-size:14px;border-radius:999px;padding:10px 18px;cursor:pointer;border:2px solid var(--teal);background:transparent;color:var(--teal-deep);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:var(--on-dark);box-shadow:0 6px 14px rgba(221,100,38,.3)}
+.btn.plain{border-color:transparent;color:var(--muted)}
+.btn.x{background:var(--ink);border-color:var(--ink);color:var(--on-dark);box-shadow:0 6px 14px rgba(34,55,75,.25)}
+.btn.x svg{width:14px;height:14px}
+.decide{font-family:var(--font-head);font-weight:800;font-size:17px;padding:11px 28px}
+.btn:disabled{background:var(--line);border-color:var(--line);color:var(--muted);box-shadow:none;cursor:not-allowed}
+.btn.plain:disabled{background:transparent;border-color:transparent;opacity:.45}
+
+/* ---------- 結果 ---------- */
+.result{padding-top:10px}
+.type-card{position:relative;isolation:isolate;overflow:hidden;border-radius:40px 40px 52px 26px;box-shadow:var(--shadow);padding:clamp(26px,5vw,56px) clamp(16px,5vw,56px) clamp(90px,12vw,150px)}
+.type-panel{position:relative;background:rgba(255,255,255,.93);border-radius:30px;padding:clamp(22px,4vw,36px);max-width:620px}
+.type-eyebrow{font-weight:700;font-size:15px;color:var(--muted)}
+.type-name{font-family:var(--font-head);font-weight:800;font-size:clamp(32px,6vw,56px);line-height:1.25;margin-top:6px}
+.type-name .mod{display:block;font-size:.46em;color:var(--teal-deep);letter-spacing:.04em}
+.type-name.pop .main{display:inline-block;animation:pop .55s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes pop{0%{transform:scale(.85) rotate(-4deg)}100%{transform:none}}
+.type-desc{margin-top:14px;font-size:15.5px;font-weight:500}
+.picked{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:18px;font-size:12.5px}
+.picked .lbl{font-weight:700;margin-right:2px}
+.picked .pk{background:var(--teal-soft);color:var(--teal-deep);border-radius:999px;padding:1px 10px;font-weight:700}
+.balance{margin-top:56px}
+.bars{list-style:none;margin:0 auto;padding:0;display:flex;flex-direction:column;gap:12px;max-width:680px}
+.bars li{display:grid;grid-template-columns:9.5em minmax(0,1fr) 3.2em;gap:12px;align-items:center;font-size:14px}
+.b-label{font-weight:700}
+.b-fill{display:block;height:14px;border-radius:999px;background:var(--teal);min-width:8px}
+.bars li:first-child .b-fill{background:var(--orange)}
+.b-pct{text-align:right;font-weight:700;font-family:var(--font-latin);font-variant-numeric:tabular-nums}
+.bal-note{text-align:center;font-size:12.5px;color:var(--muted);margin-top:14px}
+.rec-sec{margin-top:60px}
+.rec-head{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px}
+.rank{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--orange);color:var(--on-dark);font-family:var(--font-head);font-weight:800;font-size:16px;flex:none}
+.rec-genre{font-family:var(--font-head);font-weight:800;font-size:clamp(21px,3.2vw,26px);line-height:1.3}
+.rec-note{font-size:13px;color:var(--muted);font-weight:700}
+.rec-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
+@media (min-width:760px){.rec-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.rec{display:flex;flex-direction:column;min-width:0;background:var(--card);border-radius:26px;overflow:hidden;box-shadow:var(--shadow)}
+.rec-art{position:relative;aspect-ratio:16/8;max-width:100%}
+.rec-body{display:flex;flex-direction:column;gap:8px;flex:1;padding:14px 18px 18px}
+.rec-top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12.5px}
+.match{background:var(--orange-soft);color:var(--orange-text);border-radius:999px;padding:1px 11px;font-weight:700;font-variant-numeric:tabular-nums}
+.match b{font-family:var(--font-latin);font-size:15px}
+.rec-year{color:var(--muted);font-weight:700;font-variant-numeric:tabular-nums}
+.rec-title{font-family:var(--font-head);font-weight:800;font-size:18px;line-height:1.4;overflow-wrap:anywhere}
+.rec-desc{font-size:14px}
+.rec-tags{display:flex;flex-wrap:wrap;gap:5px}
+.rec-tags span{font-size:11.5px;font-weight:700;background:var(--teal-soft);color:var(--teal-deep);border-radius:999px;padding:0 9px}
+.rec-why{font-size:12.5px;font-weight:700;color:var(--muted)}
+.rec-art img{display:block;width:100%;height:100%;object-fit:cover}
+.watch{display:flex;flex-direction:column;gap:6px;padding:10px 12px;background:var(--bg);border-radius:16px}
+.watch-h{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700}
+.ad{font-size:10.5px;font-weight:700;color:var(--muted);border:1px solid var(--muted);border-radius:4px;padding:0 5px;line-height:1.5}
+.watch-links{display:flex;flex-wrap:wrap;gap:6px}
+.watch-links a{font-size:12.5px;font-weight:700;text-decoration:none;color:var(--teal-deep);background:var(--card);border:1.5px solid var(--teal);border-radius:999px;padding:3px 12px}
+.watch-links a:hover{background:var(--teal-soft)}
+.watch-note{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* ---------- 管理ページ ---------- */
+.admin{padding-block:16px 150px}
+.admin-lock{text-align:center;color:var(--muted);font-weight:700;padding-block:30px}
+.admin-warn{background:var(--orange-soft);border-radius:20px;padding:16px 20px;margin-bottom:24px}
+.admin-warn b{display:block;color:var(--orange-text);margin-bottom:4px}
+.admin-box{display:flex;flex-direction:column;gap:12px;background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:clamp(18px,3vw,28px);margin-bottom:24px}
+.admin-box h3{font-family:var(--font-head);font-weight:800;font-size:19px}
+.admin-help{font-size:13px;color:var(--muted)}
+.field{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700}
+.field input,.admin-tools input[type="search"],.acredit{width:100%;min-width:0;font:inherit;font-size:16px;font-weight:500;padding:9px 14px;border:2px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
+.field input:focus,.admin-tools input:focus,.acredit:focus{outline:none;border-color:var(--teal)}
+.field-err{color:var(--danger);font-size:12px;font-weight:700}
+.admin-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.admin-tools input[type="search"]{flex:1 1 220px;width:auto;border-radius:999px}
+.admin-tools label{display:flex;gap:6px;align-items:center;font-size:13px;font-weight:700}
+.admin-list{list-style:none;margin:0;padding:0}
+.arow{display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:12px;align-items:center;padding-block:10px;border-top:1px solid var(--line)}
+.athumb{width:112px;max-width:100%;aspect-ratio:2/1;border-radius:10px;overflow:hidden;background:var(--teal-soft);display:grid;place-items:center;font-size:11px;color:var(--muted)}
+.athumb img{display:block;width:100%;height:100%;object-fit:cover}
+.ainfo{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ainfo b{font-size:14px;line-height:1.4;overflow-wrap:anywhere}
+.acredit{padding:6px 10px}
+.acredit:disabled{background:var(--bg)}
+.aact{display:flex;flex-direction:column;gap:6px}
+.btn.small{font-size:12.5px;padding:6px 12px;justify-content:center}
+.astatus{font-size:12px;font-weight:700;color:var(--orange-text)}
+.aff-fields{display:flex;flex-direction:column;gap:12px}
+.arow{border-radius:12px;transition:background-color .12s ease}
+.arow.drop{background:var(--teal-soft);outline:3px dashed var(--teal);outline-offset:-3px}
+.arow.drop .athumb{background:var(--card)}
+.btn.plain.danger-btn{color:var(--danger)}
+@media (max-width:560px){
+  .arow{grid-template-columns:88px minmax(0,1fr)}
+  .athumb{width:88px}
+  .aact{grid-column:1 / -1;flex-direction:row}
+}
+.credit{font-size:11px;color:var(--muted);line-height:1.5;overflow-wrap:anywhere}
+.credit a{color:inherit}
+.rec-link{margin-top:auto;padding-top:4px;font-size:13px;font-weight:700;color:var(--teal-deep);text-underline-offset:3px}
+.res-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:56px;padding-bottom:20px}
+.copy-area{display:block;width:100%;max-width:680px;min-height:9em;margin:10px auto 0;font:inherit;font-size:14px;padding:14px;border:2px solid var(--line);border-radius:18px;background:var(--card);color:var(--ink)}
+
+/* ---------- フッター ---------- */
+.foot{margin-top:72px;color:var(--on-dark)}
+.foot-wave{display:block;width:100%;height:clamp(40px,6vw,80px);fill:var(--teal);margin-bottom:-1px}
+.foot-body{background:var(--teal);padding-block:18px calc(110px + env(safe-area-inset-bottom,0px))}
+.foot-in{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px}
+.foot .logo{color:var(--on-dark);margin-right:auto}
+.foot-nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+.foot-nav a{text-decoration:none;font-weight:700;font-size:14px;color:var(--on-dark)}
+.foot-note{width:100%;font-size:12px;opacity:.85}
+
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9;background:var(--ink);color:var(--on-dark);font-weight:700;font-size:14px;padding:10px 20px;border-radius:999px;max-width:calc(100% - 32px);text-align:center}
+
+@media (max-width:760px){
+  .concepts{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+  .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 14px}
+  .menu-name{font-size:15px}
+}
+@media (max-width:420px){
+  .bars li{grid-template-columns:8.4em minmax(0,1fr) 2.9em;font-size:13px}
+  .bar-in{padding-left:16px}
+  .decide{padding:11px 20px}
+  .btn.plain{padding-inline:8px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="spark" viewBox="0 0 64 64"><path d="M32 4C34 24 40 30 60 32C40 34 34 40 32 60C30 40 24 34 4 32C24 30 30 24 32 4Z"/></symbol>
+  <symbol id="planet" viewBox="0 0 64 64"><circle cx="32" cy="32" r="14"/><ellipse cx="32" cy="32" rx="28" ry="8" fill="none" stroke="currentColor" stroke-width="3" transform="rotate(-20 32 32)"/></symbol>
+  <symbol id="rocket" viewBox="0 0 64 64">
+    <path d="M46 6C33 8 23 18 19 32l13 13c14-4 24-14 26-27 1-6-6-13-12-12z" fill="#fff" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="40" cy="24" r="5" fill="#D6EFE4" stroke="currentColor" stroke-width="3"/>
+    <path d="M19 32l-9 2-5 10 13-2M32 45l-2 9-10 5 2-13" fill="#fff" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M16 46c-5 2-8 7-10 12 5-2 10-5 12-10z" fill="#DD6426"/>
+  </symbol>
+</svg>
+
+<p class="pr-bar" id="prBar" hidden><span class="ad">PR</span>このサイトには広告がふくまれます</p>
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="logo" href="#top">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3L29 27H3Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/><circle cx="16" cy="19" r="3.2" fill="#DD6426"/></svg>
+      ANIMA
+    </a>
+    <nav class="nav" id="nav" aria-label="サイト内メニュー">
+      <a href="#concept">こだわり</a>
+      <a href="#menu">診断メニュー</a>
+      <a href="#shindan">診断する</a>
+    </nav>
+    <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <span class="sr">メニューを開く</span>
+    </button>
+  </div>
+</header>
+
+<main id="home">
+  <section class="hero" id="top">
+    <div class="wrap" style="position:relative">
+      <div class="hero-card">
+        <div class="art" id="heroArt"></div>
+        <div class="hero-copy">
+          <h1>あなたの好きが、<br>きっと見つかる。</h1>
+          <p class="hero-sub">好きなアニメを選ぶだけでわかる、<br>新しいアニメとの出会い。</p>
+          <a class="cta" href="#shindan">診断をはじめる <span aria-hidden="true">→</span></a>
+        </div>
+        <svg class="wave-bottom" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 34C160 6 330 6 520 30S900 62 1200 14V60H0Z"/></svg>
+      </div>
+      <svg class="deco rocket" viewBox="0 0 64 64" aria-hidden="true"><use href="#rocket"/></svg>
+      <svg class="deco st1" viewBox="0 0 64 64" aria-hidden="true"><use href="#spark"/></svg>
+      <svg class="deco st2" viewBox="0 0 64 64" aria-hidden="true"><use href="#spark"/></svg>
+    </div>
+  </section>
+
+  <section class="section concept-sec" id="concept">
+    <svg class="deco st3" viewBox="0 0 64 64" aria-hidden="true"><use href="#spark"/></svg>
+    <svg class="deco pl" viewBox="0 0 64 64" aria-hidden="true"><use href="#planet"/></svg>
+    <div class="wrap">
+      <div class="sec-title">
+        <h2>こだわり</h2><span class="en">CONCEPT</span>
+        <svg class="squig" viewBox="0 0 60 10" aria-hidden="true"><path d="M2 6Q9 1 16 6T30 6T44 6T58 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="concepts">
+        <article class="concept">
+          <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><circle cx="32" cy="32" r="15" fill="#fff"/><ellipse cx="32" cy="32" rx="28" ry="8" transform="rotate(-20 32 32)"/></svg>
+          <p class="num">こだわり 01</p>
+          <h3><span id="animeCount">205</span>作品から選べる</h3>
+          <p>人気の作品から、見たことがあって好きなものをタップするだけ。</p>
+        </article>
+        <article class="concept">
+          <svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4C34 24 40 30 60 32C40 34 34 40 32 60C30 40 24 34 4 32C24 30 30 24 32 4Z" fill="#fff" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>
+          <p class="num">こだわり 02</p>
+          <h3>あなたのタイプがわかる</h3>
+          <p>選んだ作品のジャンルを合計して、「熱血バトル派」などのタイプを診断します。</p>
+        </article>
+        <article class="concept">
+          <svg class="icon" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="16" width="48" height="34" rx="8" fill="#fff"/><path d="M24 8l8 8 8-8M22 56h20"/><path d="M28 26v14l12-7z" fill="#DD6426" stroke="none"/></svg>
+          <p class="num">こだわり 03</p>
+          <h3>ジャンル別におすすめ</h3>
+          <p>好きなジャンルの上位3つから、まだ選んでいない作品を相性つきで紹介します。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section menu-sec" id="menu">
+    <svg class="deco st4" viewBox="0 0 64 64" aria-hidden="true"><use href="#spark"/></svg>
+    <div class="wrap">
+      <div class="sec-title">
+        <h2>診断メニュー</h2><span class="en">MENU</span>
+        <svg class="squig" viewBox="0 0 60 10" aria-hidden="true"><path d="M2 6Q9 1 16 6T30 6T44 6T58 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </div>
+  </section>
+
+  <section class="section pick" id="shindan">
+    <div class="wrap">
+      <div class="sec-title">
+        <h2>好きなアニメを選ぶ</h2><span class="en">SELECT</span>
+        <svg class="squig" viewBox="0 0 60 10" aria-hidden="true"><path d="M2 6Q9 1 16 6T30 6T44 6T58 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <p class="pick-lead">好きな作品をタップしてね。3作品以上選ぶと、診断がもっと正確になります。</p>
+      <p class="count" id="shownCount"></p>
+    </div>
+    <div class="tools">
+      <div class="wrap tools-in">
+        <label class="search" for="q">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <span class="sr">作品名で探す</span>
+          <input id="q" type="search" placeholder="作品名で探す（例：きめつ、ハイキュー）" autocomplete="off" enterkeyhint="search">
+        </label>
+        <div class="chips" id="chips" role="toolbar" aria-label="ジャンルでしぼりこむ"></div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="grid" id="grid"></div>
+      <p class="empty" id="empty" hidden></p>
+      <p class="note">ジャンル分けと「相性」の数字は、このサイト独自の目安です。年は最初のテレビアニメ（または配信）が始まった年です。</p>
+    </div>
+  </section>
+</main>
+
+<section class="result" id="result" hidden aria-labelledby="typeName">
+  <div class="wrap">
+    <div class="type-card">
+      <div class="art" id="typeArt"></div>
+      <div class="type-panel">
+        <p class="type-eyebrow">あなたのアニメタイプは…</p>
+        <h2 class="type-name" id="typeName"></h2>
+        <p class="type-desc" id="typeDesc"></p>
+        <p class="picked" id="pickedLine"></p>
+      </div>
+      <svg class="wave-bottom" viewBox="0 0 1200 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30C220 0 400 50 640 32S1000 0 1200 26V60H0Z"/></svg>
+    </div>
+
+    <section class="balance" aria-labelledby="balH">
+      <div class="sec-title">
+        <h2 id="balH">ジャンルのバランス</h2><span class="en">BALANCE</span>
+        <svg class="squig" viewBox="0 0 60 10" aria-hidden="true"><path d="M2 6Q9 1 16 6T30 6T44 6T58 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <ol class="bars" id="bars"></ol>
+      <p class="bal-note">選んだ作品のジャンルを合計した割合です（上位6つ）</p>
+    </section>
+
+    <div id="recs"></div>
+
+    <div class="res-actions">
+      <a id="tweetBtn" class="btn x" href="https://twitter.com/intent/tweet" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>Xでポストする</a>
+      <button type="button" id="copyBtn" class="btn primary">結果をコピーする</button>
+      <button type="button" id="backBtn" class="btn">作品を選び直す</button>
+      <button type="button" id="retryBtn" class="btn plain">最初から診断する</button>
+    </div>
+    <textarea id="copyArea" class="copy-area" readonly hidden aria-label="コピー用の文章"></textarea>
+  </div>
+</section>
+
+<section class="admin" id="admin" hidden aria-labelledby="adminH">
+  <div class="wrap">
+    <div class="sec-title">
+      <h2 id="adminH">管理ページ</h2><span class="en">ADMIN</span>
+      <svg class="squig" viewBox="0 0 60 10" aria-hidden="true"><path d="M2 6Q9 1 16 6T30 6T44 6T58 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+    </div>
+    <p class="admin-lock" id="adminLock">確認しています…</p>
+    <div id="adminBody" hidden>
+      <div class="admin-warn">
+        <b>画像を載せる前に</b>
+        <p>自分で描いた絵・自分で撮った写真・「自由に使ってよい」と決められている画像だけを使ってください。アニメの公式画像やほかの人の絵を勝手に載せると著作権の問題になり、アフィリエイトの審査にも落ちます。</p>
+      </div>
+
+      <section class="admin-box" aria-labelledby="affH">
+        <h3 id="affH">配信サービスのリンク（アフィリエイト）</h3>
+        <p class="admin-help">アフィリエイトのサービスでもらったIDやリンクを入れると、おすすめカードの「配信サービスで探す」がそのリンクになり、「広告」の表示が自動で付きます。空のままなら、ふつうの検索リンクです。</p>
+        <label class="field" for="affPrime"><span>Amazonアソシエイトのトラッキング ID（例：anima-22）</span><input id="affPrime" type="text" autocomplete="off" spellcheck="false"><span class="field-err" id="affPrimeErr" hidden>英数字とハイフンだけで入れてください</span></label>
+        <div id="affFields" class="aff-fields"></div>
+        <p class="admin-help">広告サービスでもらったコード（&lt;a href="…"&gt; から始まるもの）は、そのまま貼って大丈夫です。リンクのアドレスだけを自動で取り出します。広告リンクの中に {url} と書くと、その部分が作品ごとの検索ページのアドレスに置きかわります（広告サービスがそういうリンクに対応している場合だけ）。広告リンクを入れたサービスは、カードの一番上の方に並びます。Netflix には広告の仕組みがないので、欄はありません。</p>
+      </section>
+
+      <section class="admin-box" aria-labelledby="shareH">
+        <h3 id="shareH">シェアのアドレス</h3>
+        <p class="admin-help">「Xでポストする」と「結果をコピーする」の文に付く、このサイトのアドレスです。空のままなら、いまのアドレスが付きます。自分のサイトに引っ越したときだけ変えてください。</p>
+        <label class="field" for="siteUrl"><span>サイトのアドレス</span><input id="siteUrl" type="url" autocomplete="off" spellcheck="false" placeholder="https://..."><span class="field-err" id="siteUrlErr" hidden>https:// から始まるアドレスを入れてください</span></label>
+      </section>
+
+      <section class="admin-box" aria-labelledby="imgH">
+        <h3 id="imgH">作品の画像</h3>
+        <p class="admin-help">画像を選ぶと、おすすめカードの絵がその画像に変わります。パソコンの画像を、作品の行の上へドラッグして落としても入れられます。大きい画像は自動で小さくします。「出典」には、作者名やライセンスなど、表示が必要な文を入れてください。</p>
+        <div class="admin-tools">
+          <label for="adminQ" class="sr">作品名で探す</label>
+          <input id="adminQ" type="search" placeholder="作品名で探す" autocomplete="off">
+          <label for="adminOnly"><input id="adminOnly" type="checkbox"> 画像がある作品だけ</label>
+        </div>
+        <ul class="admin-list" id="adminList"></ul>
+        <p class="admin-help" id="assetUsage"></p>
+        <div><button type="button" class="btn plain danger-btn" id="cleanupBtn">使っていない画像を削除する</button></div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <svg class="foot-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46C200 6 420 6 700 40S1180 74 1440 22V80H0Z"/></svg>
+  <div class="foot-body">
+    <div class="wrap foot-in">
+      <a class="logo" href="#top">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3L29 27H3Z" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/><circle cx="16" cy="19" r="3.2" fill="#FDE6D2"/></svg>
+        ANIMA
+      </a>
+      <nav class="foot-nav" aria-label="フッターのメニュー">
+        <a href="#concept">こだわり</a><a href="#menu">診断メニュー</a><a href="#shindan">診断する</a><a href="privacy.html">プライバシーポリシー</a><a href="#admin" id="adminLink" hidden>管理ページ</a>
+      </nav>
+      <p class="foot-note">ANIMA アニメ診断 ― ジャンル分けと相性はこのサイト独自の目安です。作品の絵は雰囲気をイメージしたオリジナルのイラストで、公式の画像ではありません。作品名は各権利者のものです。</p>
+      <p class="foot-note" id="adNote" hidden></p>
+    </div>
+  </div>
+</footer>
+
+<div class="bar" id="bar" hidden>
+  <div class="bar-in">
+    <div class="bar-info">
+      <span class="bar-count"><b id="selCount">0</b>作品を選択中</span>
+      <span class="bar-hint" id="barHint">好きな作品をタップして選んでね</span>
+    </div>
+    <button type="button" id="clearBtn" class="btn plain" disabled>クリア</button>
+    <button type="button" id="decideBtn" class="btn primary decide" disabled>決定</button>
+  </div>
+</div>
+<div class="bar" id="saveBar" hidden>
+  <div class="bar-in">
+    <div class="bar-info">
+      <span class="bar-count" id="saveState">変更はありません</span>
+      <span class="bar-hint">保存すると、見に来た人全員に反映されます</span>
+    </div>
+    <button type="button" id="adminExit" class="btn plain">サイトに戻る</button>
+    <button type="button" id="saveBtn" class="btn primary" disabled>保存して公開</button>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<!-- サイトのデータ（管理ページから保存）と、保存のときに使うページの元データ。build.py が埋める -->
+<script type="application/json" id="site-data">{"photos":{},"watch":{"amazonTag":"kaichan0f1-22","aff":{"unext":"","dmm":"","danime":"","abema":"","hulu":"","lemino":"","fod":"","disney":""}},"siteUrl":"https://anima-shindan.github.io/"}</script>
+<script type="text/plain" id="page-src"></script>
+
+<script id="logic">
+const GENRES = {
+  battle:   {n:"バトル", s:"バトル", type:"熱血バトル派", mod:"バトル好きの", d:"強い敵、ぶつかり合う信念、限界をこえる瞬間。手に汗にぎる戦いと、主人公の成長にいちばん燃えるタイプです。"},
+  fantasy:  {n:"冒険・ファンタジー", s:"冒険", type:"冒険ファンタジー派", mod:"冒険好きの", d:"見たことのない世界、旅の仲間、少しずつ明かされる世界のひみつ。物語のスケールの大きさにワクワクするタイプです。"},
+  isekai:   {n:"異世界", s:"異世界", type:"異世界転生派", mod:"異世界好きの", d:"別の世界で生まれ変わって、もう一度人生をやり直す。ゲームのような設定や、主人公が成り上がっていく展開が好きなタイプです。"},
+  sf:       {n:"SF・ロボット", s:"SF", type:"SF・メカ派", mod:"SF好きの", d:"未来の技術、ロボット、タイムリープ。作り込まれた設定や、壮大な世界観に心をつかまれるタイプです。"},
+  mystery:  {n:"ミステリー", s:"ミステリー", type:"謎解き考察派", mod:"考察好きの", d:"伏線、どんでん返し、頭脳戦。見ながら「この先どうなる？」と考えるのが楽しいタイプです。"},
+  dark:     {n:"ダーク・ホラー", s:"ダーク", type:"ダーク展開派", mod:"ダーク寄りの", d:"容赦のない展開や重いテーマからも目をそらさない。ハラハラする緊張感と、心に残る衝撃を求めるタイプです。"},
+  comedy:   {n:"コメディ", s:"コメディ", type:"笑い重視派", mod:"笑い好きの", d:"テンポのいいツッコミ、クセの強いキャラ、予想外のボケ。見終わって元気になれる作品が好きなタイプです。"},
+  love:     {n:"恋愛・ラブコメ", s:"恋愛", type:"恋愛キュン派", mod:"キュン好きの", d:"すれ違い、かけ引き、少しずつ縮まる距離。キャラ同士の関係にドキドキしたいタイプです。"},
+  youth:    {n:"青春", s:"青春", type:"青春まっすぐ派", mod:"青春好きの", d:"部活、友情、進路の悩み。何かに本気になる登場人物を、思わず応援したくなるタイプです。"},
+  sports:   {n:"スポーツ", s:"スポーツ", type:"スポーツ熱戦派", mod:"スポーツ好きの", d:"チームの絆、ライバルとの試合、最後の1点。努力が実る瞬間に胸が熱くなるタイプです。"},
+  slice:    {n:"日常・ほのぼの", s:"日常", type:"日常ほのぼの派", mod:"ほのぼの好きの", d:"大きな事件がなくても、何気ない毎日がいとおしい。ゆったりした空気にいやされたいタイプです。"},
+  music:    {n:"音楽・アイドル", s:"音楽", type:"音楽・推し活派", mod:"音楽好きの", d:"ライブシーン、バンド、アイドル。歌や演奏と、夢を追うキャラを全力で推したいタイプです。"},
+  emotional:{n:"感動・泣ける", s:"感動", type:"感動・涙腺派", mod:"涙もろい", d:"家族、別れ、約束。見終わったあとも心に残る、泣ける物語を大切にするタイプです。"}
+};
+const GK = Object.keys(GENRES);
+
+/* [作品名, よみ(検索用・先頭がID), 開始年, ジャンル(先頭がメイン), ひとこと紹介] */
+const RAW = [
+["鬼滅の刃","きめつのやいば",2019,"battle dark emotional","家族を鬼に奪われた少年が、鬼になった妹を人間に戻すため剣士になる。"],
+["呪術廻戦","じゅじゅつかいせん",2020,"battle dark","呪いの王の指を飲み込んだ高校生が、呪術師として呪いと戦う。"],
+["僕のヒーローアカデミア","ぼくのひーろーあかでみあ ひろあか",2016,"battle youth","超能力「個性」を持たずに生まれた少年が、ヒーロー養成校で最高のヒーローを目指す。"],
+["ONE PIECE","わんぴーす",1999,"fantasy battle emotional","海賊王を目指すルフィと仲間たちが、ひとつなぎの大秘宝を求めて海を冒険する。"],
+["NARUTO -ナルト-","なると",2002,"battle fantasy emotional","落ちこぼれ忍者のナルトが、里の長「火影」を目指して成長していく。"],
+["HUNTER×HUNTER","はんたーはんたー",2011,"battle fantasy","父を探す少年ゴンが、ハンター試験から始まる危険な冒険に挑む。"],
+["進撃の巨人","しんげきのきょじん",2013,"dark battle mystery","巨人に故郷を壊された少年が、壁の外の世界と巨人の謎に迫っていく。"],
+["チェンソーマン","ちぇんそーまん",2022,"battle dark comedy","借金まみれの少年デンジが、チェンソーの悪魔の力でデビルハンターになる。"],
+["鋼の錬金術師 FULLMETAL ALCHEMIST","はがねのれんきんじゅつし はがれん",2009,"fantasy battle emotional","錬金術で体を失った兄弟が、元に戻るため「賢者の石」を探して旅をする。"],
+["葬送のフリーレン","そうそうのふりーれん",2023,"fantasy emotional slice","魔王を倒したあとのエルフの魔法使いが、人を知るための新しい旅に出る。"],
+["薬屋のひとりごと","くすりやのひとりごと",2023,"mystery love","後宮で働く薬師の少女・猫猫が、薬と毒の知識で宮中の事件を解いていく。"],
+["SPY×FAMILY","すぱいふぁみりー",2022,"comedy slice battle","スパイ・殺し屋・超能力者が、正体を隠したまま仮の家族として暮らす。"],
+["【推しの子】","おしのこ",2023,"music mystery dark","芸能界を舞台に、アイドルの子として生まれた双子がある事件の真相を追う。"],
+["ぼっち・ざ・ろっく！","ぼっちざろっく",2022,"music comedy youth","極度の人見知りのギター少女が、バンドを組んでライブに挑む。"],
+["けいおん！","けいおん",2009,"music slice comedy","軽音部の女子高生たちが、お茶とおしゃべりと演奏の日々を送る。"],
+["ラブライブ！","らぶらいぶ",2013,"music youth","廃校の危機から学校を救うため、女子高生たちがスクールアイドルを始める。"],
+["ハイキュー!!","はいきゅー",2014,"sports youth","背の低い少年・日向が、天才セッター影山とバレーボールで頂点を目指す。"],
+["黒子のバスケ","くろこのばすけ",2012,"sports battle","影の薄い少年・黒子が、パスの技で天才集団「キセキの世代」に挑む。"],
+["ブルーロック","ぶるーろっく",2022,"sports battle","日本一のストライカーを生む施設で、300人の高校生FWが生き残りをかけて争う。"],
+["SLAM DUNK","すらむだんく",1993,"sports youth comedy","不良少年の桜木花道が、バスケ部に入って才能を開花させていく。"],
+["弱虫ペダル","よわむしぺだる",2013,"sports youth","アニメ好きの少年が、自転車競技部でロードレースの楽しさに目覚める。"],
+["Re:ゼロから始める異世界生活","りぜろからはじめるいせかいせいかつ りぜろ",2016,"isekai dark mystery","異世界に召喚された少年が、死ぬと時間が巻き戻る力で悲劇の運命にあらがう。"],
+["転生したらスライムだった件","てんせいしたらすらいむだったけん てんすら",2018,"isekai fantasy comedy","スライムに転生した会社員が、魔物たちと力を合わせて国を作っていく。"],
+["この素晴らしい世界に祝福を！","このすばらしいせかいにしゅくふくを このすば",2016,"isekai comedy","異世界に転生した少年と、ちょっと残念な仲間たちのドタバタ冒険コメディ。"],
+["無職転生 〜異世界行ったら本気だす〜","むしょくてんせい",2021,"isekai fantasy emotional","引きこもりだった男が異世界に生まれ変わり、今度こそ本気で生きようとする。"],
+["ソードアート・オンライン","そーどあーとおんらいん",2012,"isekai battle love","ログアウトできないVRゲームに閉じ込められた少年が、命がけでクリアを目指す。"],
+["オーバーロード","おーばーろーど",2015,"isekai dark battle","ゲームの世界ごと異世界へ飛ばされたプレイヤーが、最強のアンデッドとして君臨する。"],
+["盾の勇者の成り上がり","たてのゆうしゃのなりあがり",2019,"isekai fantasy dark","盾の勇者として異世界に呼ばれた青年が、裏切りからはい上がっていく。"],
+["ダンジョン飯","だんじょんめし",2024,"fantasy comedy","ダンジョンの魔物を料理して食べながら、仲間を助けるために最深部を目指す。"],
+["魔法少女まどか☆マギカ","まほうしょうじょまどかまぎか まどまぎ",2011,"dark fantasy emotional","魔法少女になる契約の本当の意味を知っていく、少女たちの物語。"],
+["STEINS;GATE","しゅたいんずげーと",2011,"sf mystery emotional","過去へメールを送れる発明が、仲間たちの運命を大きく変えてしまう。"],
+["コードギアス 反逆のルルーシュ","こーどぎあすはんぎゃくのるるーしゅ",2006,"sf battle dark","人を従わせる力「ギアス」を手にした少年が、巨大な帝国への反逆を始める。"],
+["新世紀エヴァンゲリオン","しんせいきえゔぁんげりおん えゔぁ",1995,"sf dark mystery","人型兵器エヴァに乗ることになった14歳の少年が、謎の敵「使徒」と戦う。"],
+["機動戦士ガンダム 水星の魔女","きどうせんしがんだむすいせいのまじょ",2022,"sf youth battle","モビルスーツの操縦を学ぶ学園に、水星から来た少女が転入する。"],
+["天元突破グレンラガン","てんげんとっぱぐれんらがん",2007,"sf battle emotional","地下の村で暮らす少年たちが、ロボットで天井を突き破り地上を目指す。"],
+["サイバーパンク エッジランナーズ","さいばーぱんくえっじらんなーず",2022,"sf dark battle","体を機械化した少年が、犯罪だらけの未来都市で生き抜こうとする。"],
+["PSYCHO-PASS サイコパス","さいこぱす",2012,"sf mystery dark","心の状態が数値で管理される未来で、刑事たちが犯罪と向き合う。"],
+["DEATH NOTE","ですのーと",2006,"mystery dark","名前を書くと人が死ぬノートを拾った天才と、名探偵Lの頭脳戦。"],
+["約束のネバーランド","やくそくのねばーらんど",2019,"mystery dark","幸せな孤児院の恐ろしい秘密を知った子どもたちが、脱出を計画する。"],
+["名探偵コナン","めいたんていこなん",1996,"mystery love","体が小さくなった高校生探偵が、次々と起きる難事件を推理で解決する。"],
+["氷菓","ひょうか",2012,"mystery youth slice","省エネ主義の高校生が、好奇心いっぱいの少女に頼まれて日常の謎を解く。"],
+["モブサイコ100","もぶさいこ",2016,"battle comedy youth","強い超能力を持つ地味な中学生モブが、悩みながら自分らしく成長していく。"],
+["ワンパンマン","わんぱんまん",2015,"battle comedy","どんな敵もパンチ一発で倒してしまうヒーローの、最強すぎる悩み。"],
+["銀魂","ぎんたま",2006,"comedy battle emotional","宇宙人がやって来た江戸で、万事屋の侍たちが笑いと人情の騒動を起こす。"],
+["斉木楠雄のΨ難","さいきくすおのさいなん",2016,"comedy","何でもできる超能力者の高校生が、目立たず平穏に暮らそうと奮闘する。"],
+["かぐや様は告らせたい","かぐやさまはこくらせたい",2019,"love comedy","生徒会の天才2人が、相手から告白させようと恋の頭脳戦をくり広げる。"],
+["五等分の花嫁","ごとうぶんのはなよめ",2019,"love comedy","貧乏な優等生が、勉強ぎらいの五つ子姉妹の家庭教師になる。"],
+["からかい上手の高木さん","からかいじょうずのたかぎさん",2018,"love slice","隣の席の高木さんにからかわれ続ける、西片くんの中学校生活。"],
+["青春ブタ野郎はバニーガール先輩の夢を見ない","せいしゅんぶたやろう あおぶた",2018,"love mystery youth","「思春期症候群」という不思議な現象に悩む少女たちを、少年が助けていく。"],
+["四月は君の嘘","しがつはきみのうそ",2014,"music emotional love","ピアノが弾けなくなった少年が、自由奔放なバイオリニストの少女と出会う。"],
+["CLANNAD","くらなど",2007,"emotional love","毎日を退屈に感じていた高校生が、少女・渚との出会いから変わっていく。"],
+["あの日見た花の名前を僕達はまだ知らない。","あのひみたはなのなまえを あのはな",2011,"emotional youth","幼なじみの少女「めんま」の幽霊が現れ、バラバラだった仲間がまた集まる。"],
+["ヴァイオレット・エヴァーガーデン","ゔぁいおれっとえゔぁーがーでん",2018,"emotional fantasy","戦場で育った少女が、手紙の代筆を通して「愛してる」の意味を探す。"],
+["響け！ユーフォニアム","ひびけゆーふぉにあむ",2015,"music youth","弱小だった吹奏楽部が、新しい顧問のもとで全国大会を目指す。"],
+["ゆるキャン△","ゆるきゃん",2018,"slice","女子高生たちが、冬のキャンプや旅をのんびり楽しむ。"],
+["のんのんびより","のんのんびより",2013,"slice comedy","全校生徒5人の田舎の学校で過ごす、のどかな毎日。"],
+["夏目友人帳","なつめゆうじんちょう",2008,"slice emotional fantasy","妖怪が見える少年が、祖母の遺した「友人帳」の名前を妖怪たちに返していく。"],
+["3月のライオン","さんがつのらいおん",2016,"emotional slice youth","孤独なプロ棋士の高校生が、下町の三姉妹と出会って少しずつ変わっていく。"],
+["ちはやふる","ちはやふる",2011,"sports youth love","競技かるたに青春をかける少女と、幼なじみたちの物語。"],
+["東京リベンジャーズ","とうきょうりべんじゃーず とうりべ",2021,"battle sf youth","12年前にタイムリープした青年が、元恋人を救うため不良の世界に飛び込む。"],
+["東京喰種トーキョーグール","とうきょうぐーる",2014,"dark battle","人を食べる「喰種」になってしまった大学生の、苦しみと戦い。"],
+["文豪ストレイドッグス","ぶんごうすとれいどっぐす ぶんすと",2016,"battle mystery","文豪の名を持つ異能力者たちが、探偵社の一員として事件に挑む。"],
+["僕だけがいない街","ぼくだけがいないまち",2016,"mystery sf emotional","時間が巻き戻る力を持つ青年が、子どものころに起きた事件の真相を追う。"],
+["少女終末旅行","しょうじょしゅうまつりょこう",2017,"sf slice","文明がほろんだ世界を、2人の少女があてもなく旅していく。"],
+["メイドインアビス","めいどいんあびす",2017,"fantasy dark","母を探す少女とロボットの少年が、巨大な縦穴「アビス」の奥へ潜っていく。"],
+["魔法使いの嫁","まほうつかいのよめ",2017,"fantasy love","居場所をなくした少女が、人ならざる魔法使いの弟子、そして花嫁になる。"],
+["ダンダダン","だんだだん",2024,"battle comedy dark","幽霊を信じる少女と宇宙人を信じる少年が、次々と怪奇現象に巻き込まれる。"],
+["怪獣8号","かいじゅうはちごう",2024,"battle sf","怪獣に変身できるようになった男が、あきらめた防衛隊員の夢をもう一度追う。"],
+["ウマ娘 プリティーダービー","うまむすめぷりてぃーだーびー",2018,"sports music youth","競走馬の名前と魂を受け継いだ少女たちが、レースで夢に向かって走る。"],
+["ゾンビランドサガ","ぞんびらんどさが",2018,"music comedy","ゾンビとしてよみがえった少女たちが、佐賀を救うためアイドルになる。"],
+["宇宙よりも遠い場所","そらよりもとおいばしょ よりもい",2018,"youth emotional fantasy","女子高生4人が、本気で南極を目指して旅立つ。"],
+["86―エイティシックス―","えいてぃしっくす",2021,"sf dark emotional","無人兵器と偽られた機体で戦う少年たちと、彼らを指揮する少女の物語。"],
+["ヴィンランド・サガ","ゔぃんらんどさが",2019,"battle dark fantasy","父を殺された少年が、仇のいる傭兵団で戦い続けるヴァイキングの物語。"],
+["ゴールデンカムイ","ごーるでんかむい",2018,"fantasy battle comedy","明治の北海道で、元兵士とアイヌの少女が隠された金塊を探す。"],
+["小林さんちのメイドラゴン","こばやしさんちのめいどらごん",2017,"slice comedy fantasy","会社員の小林さんの家に、ドラゴンの少女がメイドとして住みつく。"],
+["スキップとローファー","すきっぷとろーふぁー",2023,"youth slice","地方から東京の高校に進学した少女が、まっすぐな性格で友達の輪を広げていく。"],
+["その着せ替え人形は恋をする","そのきせかえにんぎょうはこいをする きせこい",2022,"love youth","雛人形の職人を目指す少年が、クラスのギャルのコスプレ衣装作りを手伝う。"],
+["僕の心のヤバイやつ","ぼくのこころのやばいやつ ぼくやば",2023,"love youth comedy","クラスで浮いている中学生が、人気者の女子と少しずつ近づいていく。"],
+["アオのハコ","あおのはこ",2024,"love sports youth","バドミントン部の少年と、同じ家で暮らすことになったバスケ部の先輩の物語。"],
+["化物語","ばけものがたり",2009,"fantasy love mystery","「怪異」にとりつかれた少女たちを、元吸血鬼の高校生が助けていく。"],
+["ひぐらしのなく頃に","ひぐらしのなくころに",2006,"dark mystery","のどかな村で毎年起きる怪死事件。くり返される惨劇の謎を追う。"],
+["Another","あなざー",2012,"dark mystery","転校先のクラスで次々と起きる死。その原因「災厄」の正体を探る。"],
+["寄生獣 セイの格率","きせいじゅう",2014,"dark battle sf","右手に寄生生物がすみついた高校生が、人を食べる寄生生物と戦う。"],
+["Dr.STONE","どくたーすとーん",2019,"sf fantasy","全人類が石になった世界で、天才少年が科学の力で文明を取り戻していく。"],
+["BLEACH","ぶりーち",2004,"battle","死神の力を手にした高校生が、悪霊「虚（ホロウ）」と戦う。"],
+["ドラゴンボールZ","どらごんぼーる",1989,"battle fantasy","悟空たちが地球を守るため、宇宙からやって来る強敵と戦い続ける。"],
+["ジョジョの奇妙な冒険","じょじょのきみょうなぼうけん",2012,"battle fantasy","ジョースター家の血を引く者たちが、世代をこえて宿敵と戦う。"],
+["Fate/Zero","ふぇいとぜろ",2011,"battle dark fantasy","願いを叶える聖杯をめぐり、7人の魔術師と英霊たちが争う。"],
+["とある科学の超電磁砲","とあるかがくのれーるがん",2009,"battle sf","超能力者が集まる学園都市で、電撃使いの少女が事件に立ち向かう。"],
+["負けヒロインが多すぎる！","まけひろいんがおおすぎる まけいん",2024,"love comedy","失恋した「負けヒロイン」たちに、なぜか振り回される男子高校生。"],
+["リコリス・リコイル","りこりすりこいる りこりこ",2022,"battle comedy slice","喫茶店で働く2人の少女は、犯罪を防ぐ秘密組織のエージェント。"],
+["異世界おじさん","いせかいおじさん",2022,"isekai comedy","17年ぶりに異世界から帰ってきたおじさんと、甥っ子の動画配信生活。"],
+["陰の実力者になりたくて！","かげのじつりょくしゃになりたくて かげじつ",2022,"isekai comedy battle","「陰の実力者」にあこがれる少年が、転生先でその設定を全力で演じる。"],
+["地縛少年花子くん","じばくしょうねんはなこくん",2020,"dark fantasy love","学校の七不思議「トイレの花子さん」の正体は、なんと少年だった。"],
+["ブルーピリオド","ぶるーぴりおど",2021,"youth","何でも器用にこなしてきた高校生が、絵を描く楽しさに出会い美大を目指す。"],
+["映像研には手を出すな！","えいぞうけんにはてをだすな",2020,"youth comedy","アニメを作りたい女子高生3人が、自分たちの「最強の世界」を描こうと奮闘する。"],
+["銀の匙 Silver Spoon","ぎんのさじ",2013,"youth slice comedy","進学校から逃げるように農業高校へ入った少年の、酪農と青春の日々。"],
+["アイドリッシュセブン","あいどりっしゅせぶん あいなな",2018,"music youth","7人の青年が、トップアイドルを目指してデビューへの道を歩む。"],
+["君に届け","きみにとどけ",2009,"love youth","見た目で誤解されがちな少女が、クラスの人気者の少年と心を通わせていく。"],
+["とらドラ！","とらどら",2008,"love comedy youth","目つきの悪い少年と小さな暴君の少女が、おたがいの恋を応援し合う。"],
+["フルーツバスケット","ふるーつばすけっと ふるば",2019,"love fantasy emotional","異性に抱きつかれると十二支の動物に変身してしまう一族と、少女の出会い。"],
+["サマータイムレンダ","さまーたいむれんだ",2022,"mystery sf dark","故郷の島に戻った少年が、くり返す時間のなかで「影」の謎に挑む。"],
+["俺だけレベルアップな件","おれだけれべるあっぷなけん おれれべ",2024,"battle fantasy","最弱のハンターだった青年が、自分だけレベルアップできる力で最強へと成長する。"],
+["マッシュル-MASHLE-","まっしゅる",2023,"comedy battle","魔法が使えない少年が、きたえた筋肉だけで魔法学校を生き抜く。"],
+["SAKAMOTO DAYS","さかもとでいず",2025,"battle comedy","伝説の元殺し屋が、家族と商店のおだやかな日常を守るため再び戦う。"],
+["メダリスト","めだりすと",2025,"sports emotional youth","フィギュアスケートが大好きな少女と、夢をあきらめた青年コーチが、2人で世界を目指す。"],
+["アオアシ","あおあし",2022,"sports youth","愛媛の中学生が、Jリーグのユースチームでサッカーの考え方を一から学んでいく。"],
+["ダイヤのA","だいやのえーす",2013,"sports youth","強豪校に入った投手・沢村が、仲間とともに甲子園を目指して投げ続ける。"],
+["ユーリ!!! on ICE","ゆーりおんあいす ゆーり",2016,"sports emotional","引退を考えていたフィギュアスケーターのもとに、あこがれの世界王者がコーチとしてやって来る。"],
+["Free!","ふりー",2013,"sports youth","水泳が大好きな高校生たちが、もう一度仲間とリレーを泳ぐために水泳部を作る。"],
+["ピンポン THE ANIMATION","ぴんぽん",2014,"sports youth emotional","天才肌のペコと無口なスマイル。卓球に打ちこむ幼なじみ2人の才能と友情の物語。"],
+["風が強く吹いている","かぜがつよくふいている かぜつよ",2018,"sports youth emotional","ボロアパートに住む大学生10人が、箱根駅伝を目指して走り出す。"],
+["はじめの一歩","はじめのいっぽ",2000,"sports battle emotional","いじめられっ子だった少年が、ボクシングと出会い「強いとは何か」を探していく。"],
+["テニスの王子様","てにすのおうじさま てにぷり",2001,"sports battle","天才テニス少年・越前リョーマが、名門中学のテニス部で強敵たちに挑む。"],
+["本好きの下剋上","ほんずきのげこくじょう",2019,"isekai fantasy slice","本が大好きな女性が、本のない異世界の少女に生まれ変わり、自分で本を作ろうとする。"],
+["ノーゲーム・ノーライフ","のーげーむのーらいふ のげのら",2014,"isekai comedy","すべてがゲームで決まる異世界に招かれた天才ゲーマー兄妹が、世界の頂点を目指す。"],
+["幼女戦記","ようじょせんき",2017,"isekai battle dark","戦争中の異世界に少女として生まれ変わった元会社員が、軍で生き抜き出世をねらう。"],
+["蜘蛛ですが、なにか？","くもですがなにか",2021,"isekai comedy fantasy","高校生がダンジョンのクモの魔物に転生。弱い体で必死に生き残り、強くなっていく。"],
+["とんでもスキルで異世界放浪メシ","とんでもすきるでいせかいほうろうめし とんすき",2023,"isekai slice comedy","ネットスーパーで現代の食材を買える男が、料理で伝説の魔獣たちと旅をする。"],
+["乙女ゲームの破滅フラグしかない悪役令嬢に転生してしまった…","おとめげーむのはめつふらぐ はめふら",2020,"isekai love comedy","乙女ゲームの悪役令嬢に転生した少女が、破滅をさけようとするうちにみんなに愛されていく。"],
+["シャングリラ・フロンティア","しゃんぐりらふろんてぃあ しゃんふろ",2023,"isekai battle comedy","ダメなゲームばかり遊んできたゲーマーが、「神ゲー」と呼ばれるVRゲームに挑む。"],
+["ガールズバンドクライ","がーるずばんどくらい がるくら",2024,"music youth emotional","高校をやめて上京した少女が、ロックバンドで自分の気持ちをさけぶ。"],
+["夜のクラゲは泳げない","よるのくらげはおよげない よるくら",2024,"music youth","自分を好きになれない少女たちが、顔を出さない音楽グループとして動き出す。"],
+["BanG Dream! It's MyGO!!!!!","ばんどりまいご ばんどり まいご",2023,"music youth emotional","バラバラになりかけた5人が、ぶつかり合いながらもバンドを続けようとする。"],
+["うたの☆プリンスさまっ♪","うたのぷりんすさまっ うたぷり",2011,"music love","作曲家を目指す少女が、アイドルを目指す個性ゆたかな男子たちと出会う。"],
+["アイドルマスター","あいどるますたー あいます",2011,"music youth comedy","小さな芸能事務所の13人のアイドルたちが、トップアイドルを目指してがんばる。"],
+["のだめカンタービレ","のだめかんたーびれ",2007,"music comedy love","指揮者を目指すエリート音大生と、ピアノの天才だけど自由すぎる「のだめ」の物語。"],
+["坂道のアポロン","さかみちのあぽろん",2012,"music youth emotional","1960年代の長崎で、ジャズを通して出会った少年たちの友情と恋。"],
+["NANA","なな",2006,"music love emotional","同じ名前の2人のナナが東京で出会い、ルームシェアを始める。"],
+["ご注文はうさぎですか？","ごちゅうもんはうさぎですか ごちうさ",2014,"slice comedy","木組みの街の喫茶店で働く少女たちの、かわいくてやさしい毎日。"],
+["ばらかもん","ばらかもん",2014,"slice comedy emotional","島に移り住んだ書道家の青年が、元気な島の子どもたちにふり回される。"],
+["甘々と稲妻","あまあまといなずま",2016,"slice emotional","妻を亡くした高校教師と幼い娘が、教え子と一緒にごはん作りを始める。"],
+["日常","にちじょう",2011,"comedy slice","ロボットの女の子や不思議な仲間たちが送る、ちょっと変な毎日のギャグアニメ。"],
+["瑠璃の宝石","るりのほうせき",2025,"slice youth","キラキラした石が大好きな女子高生が、大学院生と一緒に鉱物採集に出かける。"],
+["蟲師","むしし",2005,"slice fantasy mystery","「蟲」と呼ばれる不思議な存在に悩む人々を、蟲師のギンコが旅をしながら助けていく。"],
+["桜蘭高校ホスト部","おうらんこうこうほすとぶ",2006,"comedy love","お金持ち学校のホスト部に借金をつくった奨学生ハルヒが、男子として部員になる。"],
+["黒執事","くろしつじ",2008,"dark mystery fantasy","名門家の少年当主と悪魔の執事セバスチャンが、裏社会の事件を解決していく。"],
+["おそ松さん","おそまつさん",2015,"comedy","大人になってもダメダメな六つ子たちの、ゆるくてはちゃめちゃなギャグ。"],
+["わたしの幸せな結婚","わたしのしあわせなけっこん",2023,"love fantasy emotional","家族に冷たくされてきた少女が、こわいと噂の軍人のもとへ嫁ぎ、少しずつ幸せを知る。"],
+["ホリミヤ","ほりみや",2021,"love youth","学校では見せない顔を持つ2人の高校生が、秘密を知り合って近づいていく。"],
+["ゆびさきと恋々","ゆびさきとれんれん",2024,"love","耳が聞こえない大学生の雪と、世界を旅する先輩・逸臣の恋の物語。"],
+["ガチアクタ","がちあくた",2025,"battle dark","無実の罪で「奈落」に落とされた少年が、物に宿る力で戦いにいどむ。"],
+["タコピーの原罪","たこぴーのげんざい",2025,"dark emotional sf","地球に来たタコ型の宇宙人が、笑わない少女を笑顔にしようとする。"],
+["光が死んだ夏","ひかるがしんだなつ",2025,"dark mystery","幼なじみの光が「何か」と入れかわっていると気づいた少年の、ひと夏の物語。"],
+["ウィッチウォッチ","うぃっちうぉっち",2025,"comedy fantasy love","魔女の少女と、彼女を守る鬼の少年が一緒に暮らす、ドタバタ学園コメディ。"],
+["片田舎のおっさん、剣聖になる","かたいなかのおっさんけんせいになる おっさん",2025,"fantasy battle","田舎の剣術道場の師範が、立派になった弟子たちに呼ばれて都で活躍する。"],
+["アポカリプスホテル","あぽかりぷすほてる",2025,"sf slice comedy","人類がいなくなった銀座で、ロボットたちがお客を待ちながらホテルを営業し続ける。"],
+["時々ボソッとロシア語でデレる隣のアーリャさん","ろしでれ ときどきぼそっとろしあご ありゃさん",2024,"love comedy","隣の席の美少女アーリャが、ロシア語でこっそり本音をもらす。実は全部わかっている男子との恋。"],
+["小市民シリーズ","しょうしみんしりーず",2024,"mystery youth","目立たない「小市民」を目指す高校生2人が、なぜか事件に巻きこまれていく。"],
+["よふかしのうた","よふかしのうた",2022,"love dark slice","眠れない中学生が、夜の街で吸血鬼の少女と出会う。"],
+["カウボーイビバップ","かうぼーいびばっぷ",1998,"sf battle","宇宙を旅する賞金かせぎたちの、ジャズに乗せたかっこいい大人の物語。"],
+["攻殻機動隊 STAND ALONE COMPLEX","こうかくきどうたい",2002,"sf mystery battle","脳までネットにつながる未来で、公安9課がサイバー犯罪に立ち向かう。"],
+["涼宮ハルヒの憂鬱","すずみやはるひのゆううつ はるひ",2006,"comedy mystery sf","宇宙人や未来人を探す女子高生ハルヒと、巻きこまれたふつうの男子の学園生活。"],
+["幽☆遊☆白書","ゆうゆうはくしょ",1992,"battle fantasy","事故で死んだ不良少年が生き返り、霊界探偵として妖怪と戦う。"],
+["るろうに剣心 -明治剣客浪漫譚-","るろうにけんしん",1996,"battle emotional","人を斬らないとちかった元人斬りの剣客が、明治の世で人々を守る。"],
+["カードキャプターさくら","かーどきゃぷたーさくら",1998,"fantasy love","小学生のさくらが、封印から逃げ出したクロウカードを集めていく魔法少女の物語。"],
+["MAJOR","めじゃー",2004,"sports youth emotional","プロ野球選手の父にあこがれる少年・吾郎が、野球ひとすじに成長していく。"],
+["あひるの空","あひるのそら",2019,"sports youth","背の低い高校生・空が、不良ばかりのバスケ部で仲間とコートに立つ。"],
+["SK∞ エスケーエイト","えすけーえいと",2021,"sports youth comedy","沖縄に転校してきた少年が、スケートボードの楽しさと夜のレースに夢中になる。"],
+["おおきく振りかぶって","おおきくふりかぶって おおふり",2007,"sports youth","自信のない投手・三橋が、新しくできた野球部で仲間を信じることを学ぶ。"],
+["頭文字D","いにしゃるでぃー",1998,"sports battle","豆腐屋の息子・拓海が、峠の走り屋たちとのカーバトルで才能を見せていく。"],
+["タッチ","たっち",1985,"sports love emotional","双子の兄弟と幼なじみの南。甲子園を目指す野球と恋の物語。"],
+["ベイビーステップ","べいびーすてっぷ",2014,"sports youth","まじめな優等生が、ノートとデータを武器にテニスでプロを目指す。"],
+["ありふれた職業で世界最強","ありふれたしょくぎょうでせかいさいきょう ありふれ",2019,"isekai battle fantasy","クラスごと異世界に呼ばれた少年が、どん底から最強の力を手にしていく。"],
+["ログ・ホライズン","ろぐほらいずん ろぐほら",2013,"isekai fantasy","ゲームの世界に閉じこめられたプレイヤーたちが、新しい社会を作っていく。"],
+["魔王学院の不適合者","まおうがくいんのふてきごうしゃ まおうがくいん",2020,"isekai battle comedy","2000年後に転生した最強の魔王が、魔王学院で「不適合者」とされてしまう。"],
+["異世界食堂","いせかいしょくどう",2017,"isekai slice","週に一度だけ異世界とつながる洋食屋に、いろいろな種族のお客がやって来る。"],
+["ゼロの使い魔","ぜろのつかいま",2006,"isekai love comedy","魔法がうまく使えない少女ルイズに、使い魔として呼び出された少年の物語。"],
+["転生したら剣でした","てんせいしたらけんでした てんけん",2022,"isekai battle fantasy","剣に転生した男が、ネコの獣人の少女フランと出会い、一緒に旅をする。"],
+["月が導く異世界道中","つきがみちびくいせかいどうちゅう つきみち",2021,"isekai comedy fantasy","女神に追い出された高校生が、異世界の荒野で最強の仲間たちと出会っていく。"],
+["やはり俺の青春ラブコメはまちがっている。","やはりおれのせいしゅんらぶこめは おれがいる",2013,"love comedy youth","ひねくれ者の高校生が「奉仕部」に入れられ、人の悩みを解決していく。"],
+["ニセコイ","にせこい",2014,"love comedy","ヤクザの息子とギャングの娘が、家どうしの争いを止めるため「ニセの恋人」になる。"],
+["古見さんは、コミュ症です。","こみさんはこみゅしょうです",2021,"comedy love youth","人と話すのがとても苦手な美少女・古見さんが、友達100人を目指してがんばる。"],
+["薫る花は凛と咲く","かおるはなはりんとさく",2025,"love youth","となり合う男子校と女子校。こわがられがちな少年と、明るい少女の恋。"],
+["君は放課後インソムニア","きみはほうかごいんそむにあ",2023,"love youth","眠れない悩みを持つ高校生2人が、学校の天文台で夜を過ごすようになる。"],
+["この音とまれ！","このおとまれ",2019,"music youth emotional","廃部寸前の箏曲部に、不良と呼ばれる少年と天才少女が入り、全国を目指す。"],
+["マクロスF","まくろすふろんてぃあ",2008,"sf music love","宇宙を旅する船団で、2人の歌姫とパイロットの少年が出会い、敵と戦う。"],
+["ラブライブ！サンシャイン!!","らぶらいぶさんしゃいん",2016,"music youth","静岡・沼津の女子高生たちが、スクールアイドル「Aqours」を結成する。"],
+["SHIROBAKO","しろばこ",2014,"slice youth","アニメ制作会社で働く若い制作進行が、仲間と一緒に作品を完成させていく。"],
+["ヤマノススメ","やまのすすめ",2013,"slice youth","高いところが苦手な少女が、幼なじみに連れられて登山の楽しさを知る。"],
+["らき☆すた","らきすた",2007,"slice comedy","オタクな女子高生こなたと友達の、ゆるいおしゃべりの毎日。"],
+["あずまんが大王","あずまんがだいおう",2002,"slice comedy","天才少女ちよちゃんたちが過ごす、ゆかいな高校3年間。"],
+["ARIA The ANIMATION","ありあ",2005,"slice fantasy emotional","水の星アクアの街で、ゴンドラの観光案内人を目指す少女のやさしい毎日。"],
+["ふらいんぐうぃっち","ふらいんぐうぃっち",2016,"slice fantasy comedy","見習い魔女の少女が、青森のいとこの家でのんびり修行の日々を送る。"],
+["炎炎ノ消防隊","えんえんのしょうぼうたい",2019,"battle sf","人が炎の怪物になる世界で、特殊消防隊の少年が「ヒーロー」を目指す。"],
+["ブラッククローバー","ぶらっくくろーばー ぶらくろ",2017,"battle fantasy","魔法が使えない少年アスタが、反魔法の剣で魔法帝を目指す。"],
+["七つの大罪","ななつのたいざい",2014,"battle fantasy","国を追われた王女が、伝説の騎士団「七つの大罪」を探す旅に出る。"],
+["どろろ","どろろ",2019,"dark battle fantasy","体の48か所を鬼神に奪われた百鬼丸が、取り戻すために鬼神と戦う。"],
+["地獄楽","じごくらく",2023,"battle dark fantasy","死罪となった忍が、無罪を得るため不老不死の薬がある島へ向かう。"],
+["ゴブリンスレイヤー","ごぶりんすれいやー",2018,"dark fantasy battle","ゴブリンだけを倒し続ける冒険者と、仲間たちの戦い。"],
+["亜人","あじん",2016,"dark sf battle","死なない新人類「亜人」だとわかった高校生が、追われる身になる。"],
+["チ。―地球の運動について―","ちきゅうのうんどうについて ち",2024,"mystery emotional dark","地動説が禁じられた時代に、命がけで真理を追い求めた人々の物語。"],
+["虚構推理","きょこうすいり",2020,"mystery fantasy love","妖怪たちの知恵の神になった少女が、うその推理で怪異の事件を解決する。"],
+["デュラララ!!","でゅららら",2010,"mystery comedy battle","池袋の街で、首なしライダーや変わった人々が起こす事件が重なっていく。"],
+["モノノ怪","もののけ",2007,"mystery dark fantasy","不思議な薬売りが、人の情念から生まれた「モノノ怪」を斬る。"],
+["PLUTO","ぷるとぅ",2023,"sf mystery emotional","世界最高水準のロボットが次々と壊される事件を、刑事ロボットが追う。"],
+["Vivy -Fluorite Eye's Song-","ゔぃゔぃ",2021,"sf emotional music","歌で人を幸せにしたいAIの歌姫が、100年後の戦争を止める旅に出る。"],
+["TRIGUN","とらいがん",1998,"sf battle comedy","600億の懸賞金がかけられたガンマン・ヴァッシュの、砂の惑星での冒険。"],
+["機動戦士ガンダムSEED","きどうせんしがんだむしーど",2002,"sf battle emotional","戦争に巻きこまれた少年キラが、親友と敵どうしになりながらガンダムで戦う。"],
+["魔入りました！入間くん","まいりましたいるまくん",2019,"comedy fantasy","悪魔の孫になった人間の少年が、魔界の学校でなぜか大活躍してしまう。"],
+["はたらく魔王さま！","はたらくまおうさま",2013,"comedy fantasy","異世界から東京に来た魔王が、ファストフード店でまじめにアルバイトをする。"],
+["ぐらんぶる","ぐらんぶる",2018,"comedy youth","海辺の大学に入った青年が、ダイビングサークルの先輩たちにふり回される。"],
+["月刊少女野崎くん","げっかんしょうじょのざきくん のざきくん",2014,"comedy love","告白した相手は、少女漫画家だった。勘ちがいから始まるラブコメ。"],
+["サイレント・ウィッチ 沈黙の魔女の隠しごと","さいれんとうぃっち",2025,"fantasy comedy","人見知りすぎる天才魔女が、正体をかくして学園で王子の護衛をする。"],
+["ある魔女が死ぬまで","あるまじょがしぬまで",2025,"fantasy emotional","余命1年と言われた見習い魔女が、命をのばすため人々の「うれし涙」を集める。"]
+];
+
+/* ジャンルの重み：メイン 1.0 → 2番目 0.7 → 3番目 0.5 */
+const WEIGHTS = [1, .7, .5, .4];
+
+function norm(s){
+  return String(s).normalize("NFKC").toLowerCase()
+    .replace(/[ァ-ヶ]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x60))
+    .replace(/[\s・!?、。:;\-ー―×【】\[\]「」'"’.,\/〜~☆△♪]/g, "");
+}
+const ANIME = RAW.map(r => {
+  const g = r[3].split(" ");
+  const v = GK.map(() => 0);
+  g.forEach((k, i) => { v[GK.indexOf(k)] += WEIGHTS[i] || .3; });
+  return { id: r[1].split(" ")[0], t: r[0], k: r[1], y: r[2], g, d: r[4], v, s: norm(r[0] + r[1]) };
+});
+const BY_ID = Object.fromEntries(ANIME.map(a => [a.id, a]));
+
+function cos(a, b){
+  let d = 0, na = 0, nb = 0;
+  for (let i = 0; i < a.length; i++){ d += a[i]*b[i]; na += a[i]*a[i]; nb += b[i]*b[i]; }
+  return na && nb ? d / Math.sqrt(na*nb) : 0;
+}
+function closest(a, picked){
+  let best = null, bs = -1;
+  picked.forEach(p => { const s = cos(p.v, a.v); if (s > bs){ bs = s; best = p; } });
+  return best;
+}
+/* 診断：選んだ作品のジャンルを合計 → 上位ジャンルでタイプを決め、ジャンルごとに相性の高い未選択作品を3つずつ */
+function compute(ids){
+  const picked = ids.map(id => BY_ID[id]).filter(Boolean);
+  if (!picked.length) return null;
+  const prof = GK.map(() => 0);
+  picked.forEach(a => a.v.forEach((x, i) => { prof[i] += x; }));
+  const total = prof.reduce((s, x) => s + x, 0);
+  const order = GK.map((k, i) => ({ k, s: prof[i] })).filter(o => o.s > 0).sort((a, b) => b.s - a.s);
+  const top = order[0], second = order[1];
+  const mod = second && second.s >= top.s * .45 ? GENRES[second.k].mod : "";
+  const pickedSet = new Set(picked.map(a => a.id));
+  const cand = ANIME.filter(a => !pickedSet.has(a.id)).map(a => ({ a, sim: cos(prof, a.v) }));
+  const used = new Set();
+  const sections = order.slice(0, 3).map((o, i) => {
+    const list = cand.filter(c => c.a.g.includes(o.k) && !used.has(c.a.id))
+      .map(c => ({ a: c.a, sim: c.sim, score: c.sim + (c.a.g[0] === o.k ? .08 : 0) }))
+      .sort((x, y) => y.score - x.score).slice(0, 3)
+      .map(c => ({ a: c.a, match: Math.round(c.sim * 100), because: closest(c.a, picked) }));
+    list.forEach(c => used.add(c.a.id));
+    return { k: o.k, rank: i + 1, list };
+  });
+  return { picked, top: top.k, mod, order: order.map(o => ({ k: o.k, pct: o.s / total * 100 })), sections };
+}
+</script>
+
+<script>
+/* ---------- 作品ごとの絵（図形で描くオリジナル。公式の画像は使わない） ---------- */
+const PAL = {
+  day:   {s1:"#86C5EC", s2:"#E6F5FB", sun:"#FFF6DC", far:"#B4D8EC", near:"#5C97C0", win:"#EAF6FD", fig:"#2B4057", ledge:"#46779A", acc:"#F08A4B"},
+  sunset:{s1:"#93B4E6", s2:"#FAD3B2", sun:"#FFE6C8", far:"#D9B2C6", near:"#7D79AF", win:"#FFEBD2", fig:"#37335E", ledge:"#615C93", acc:"#F08A4B"},
+  ember: {s1:"#6577BE", s2:"#F7AA88", sun:"#FFE2CA", far:"#C28DA8", near:"#4F4C88", win:"#FFDABC", fig:"#25234A", ledge:"#3E3B71", acc:"#E2504A"},
+  night: {s1:"#33437F", s2:"#A496D6", sun:"#F4E8FF", far:"#5E65A8", near:"#2A3468", win:"#FFD99A", fig:"#151B3B", ledge:"#1F2752", acc:"#F6C453", stars:true},
+  blood: {s1:"#2E2240", s2:"#C4687A", sun:"#FFD0C8", far:"#734766", near:"#2A1D36", win:"#FFB4A8", fig:"#140E1C", ledge:"#21172C", acc:"#E2504A", stars:true},
+  mint:  {s1:"#8ED3C7", s2:"#EFF9F2", sun:"#FFFBE8", far:"#ACD9D0", near:"#4E9690", win:"#F0FBF7", fig:"#244A4B", ledge:"#3A7A75", acc:"#F08A4B"},
+  forest:{s1:"#93CDB4", s2:"#F3F7E2", sun:"#FFF8DC", far:"#A5CBA2", near:"#4C8860", win:"#F2FAEA", fig:"#1F3B2B", ledge:"#3C6F4E", acc:"#F6C453"},
+  ocean: {s1:"#5FB2E2", s2:"#DDF3F8", sun:"#FFFBE6", far:"#9BCFE3", near:"#3C84AE", win:"#EAF7FD", fig:"#1E3A52", ledge:"#2F6C90", acc:"#F6C453"},
+  snow:  {s1:"#A3CFEE", s2:"#F5FAFD", sun:"#FFFFFF", far:"#D3E6F2", near:"#86B2D1", win:"#FFFFFF", fig:"#2B4057", ledge:"#C9DDEB", acc:"#4FA3D9"},
+  peach: {s1:"#F2B8A0", s2:"#FFF2E6", sun:"#FFFFFF", far:"#EEC1AC", near:"#C47C68", win:"#FFF4EC", fig:"#5A3440", ledge:"#A56252", acc:"#E2504A"},
+  pink:  {s1:"#B6A5E8", s2:"#FCD8E4", sun:"#FFF2F7", far:"#D8B6DA", near:"#8A70B5", win:"#FFEDF5", fig:"#3E2D5C", ledge:"#6E5799", acc:"#F48FB1"},
+  gold:  {s1:"#EDBE6A", s2:"#FFF3D8", sun:"#FFFFFF", far:"#E5BE8C", near:"#A8714A", win:"#FFF1DA", fig:"#4A2E1E", ledge:"#8A5A39", acc:"#E2504A"}
+};
+const GPAL = {battle:"ember",fantasy:"mint",isekai:"day",sf:"night",mystery:"night",dark:"night",comedy:"peach",love:"pink",youth:"sunset",sports:"day",slice:"mint",music:"pink",emotional:"sunset"};
+const GSET = {battle:"city",fantasy:"castle",isekai:"castle",sf:"space",mystery:"city",dark:"town",comedy:"town",love:"school",youth:"school",sports:"court",slice:"field",music:"stage",emotional:"field"};
+const GMOT = {battle:"sword",fantasy:"wand",isekai:"game",sf:"robot",mystery:"glass",dark:"moon",comedy:"boom",love:"heart",youth:"flower",sports:"bball",slice:"cup",music:"mic",emotional:"letter"};
+
+/* 作品ID → "場所 色 小物" */
+const ART = {
+"きめつのやいば":"town night sword","じゅじゅつかいせん":"city blood flame","ぼくのひーろーあかでみあ":"school day star",
+"わんぴーす":"sea ocean hat","なると":"mount sunset shuriken","はんたーはんたー":"mount forest rod",
+"しんげきのきょじん":"castle ember wing","ちぇんそーまん":"city blood chainsaw","はがねのれんきんじゅつし":"castle sunset magic",
+"そうそうのふりーれん":"field mint flower","くすりやのひとりごと":"town gold bottle","すぱいふぁみりー":"city peach peanut",
+"おしのこ":"stage pink star","ぼっちざろっく":"stage pink guitar","けいおん":"school peach cup",
+"らぶらいぶ":"stage sunset mic","はいきゅー":"court sunset vball","くろこのばすけ":"court ocean bball",
+"ぶるーろっく":"pitch ocean sball","すらむだんく":"sea day bball","よわむしぺだる":"field day bike",
+"りぜろからはじめるいせかいせいかつ":"castle night hourglass","てんせいしたらすらいむだったけん":"mount mint slime",
+"このすばらしいせかいにしゅくふくを":"field day frog","むしょくてんせい":"field forest wand","そーどあーとおんらいん":"castle day vr",
+"おーばーろーど":"castle blood crown","たてのゆうしゃのなりあがり":"mount ember shield","だんじょんめし":"mount gold pan",
+"まほうしょうじょまどかまぎか":"city pink gem","しゅたいんずげーと":"city sunset phone","こーどぎあすはんぎゃくのるるーしゅ":"castle night chess",
+"しんせいきえゔぁんげりおん":"city sunset robot","きどうせんしがんだむすいせいのまじょ":"space night robot","てんげんとっぱぐれんらがん":"mount ember drill",
+"さいばーぱんくえっじらんなーず":"city night moon","さいこぱす":"city night eye","ですのーと":"city blood apple",
+"やくそくのねばーらんど":"field forest key","めいたんていこなん":"city day glass","ひょうか":"school sunset book",
+"もぶさいこ":"town mint spoon","わんぱんまん":"city day boom","ぎんたま":"town day parfait",
+"さいきくすおのさいなん":"school pink cup","かぐやさまはこくらせたい":"school pink heart","ごとうぶんのはなよめ":"school pink ring",
+"からかいじょうずのたかぎさん":"school sunset umbrella","せいしゅんぶたやろう":"sea sunset bunny","しがつはきみのうそ":"town pink piano",
+"くらなど":"town sunset dango","あのひみたはなのなまえを":"field day flower","ゔぁいおれっとえゔぁーがーでん":"town gold letter",
+"ひびけゆーふぉにあむ":"school sunset horn","ゆるきゃん":"mount day tent","のんのんびより":"field mint leaf",
+"なつめゆうじんちょう":"field forest cat","さんがつのらいおん":"town ocean shogi","ちはやふる":"court pink card",
+"とうきょうりべんじゃーず":"city ember bike","とうきょうぐーる":"city blood cup","ぶんごうすとれいどっぐす":"city sunset book",
+"ぼくだけがいないまち":"town snow clock","しょうじょしゅうまつりょこう":"ruin snow star","めいどいんあびす":"mount forest whistle",
+"まほうつかいのよめ":"field mint butterfly","だんだだん":"town night ufo","かいじゅうはちごう":"city ember claw",
+"うまむすめぷりてぃーだーびー":"pitch day horseshoe","ぞんびらんどさが":"town night mic","そらよりもとおいばしょ":"snow ocean penguin",
+"えいてぃしっくす":"ruin ember robot","ゔぃんらんどさが":"sea snow ship","ごーるでんかむい":"mount snow gold",
+"こばやしさんちのめいどらごん":"city day ribbon","すきっぷとろーふぁー":"school mint flower","そのきせかえにんぎょうはこいをする":"city pink scissors",
+"ぼくのこころのやばいやつ":"school sunset heart","あおのはこ":"court ocean shuttle","ばけものがたり":"town night bat",
+"ひぐらしのなくころに":"town blood moon","あなざー":"school night eye","きせいじゅう":"city blood eye",
+"どくたーすとーん":"field forest flask","ぶりーち":"city night sword","どらごんぼーる":"mount day boom",
+"じょじょのきみょうなぼうけん":"city sunset star","ふぇいとぜろ":"castle night chalice","とあるかがくのれーるがん":"city day bolt",
+"まけひろいんがおおすぎる":"school ocean heartbreak","りこりすりこいる":"city day cup","いせかいおじさん":"city peach game",
+"かげのじつりょくしゃになりたくて":"castle night moon","じばくしょうねんはなこくん":"school night ghost","ぶるーぴりおど":"city ocean palette",
+"えいぞうけんにはてをだすな":"town peach film","ぎんのさじ":"field day milk","あいどりっしゅせぶん":"stage night mic",
+"きみにとどけ":"school peach heart","とらどら":"school sunset paw","ふるーつばすけっと":"field pink onigiri",
+"さまーたいむれんだ":"sea sunset ghost","おれだけれべるあっぷなけん":"city night arrowup","まっしゅる":"castle day dumbbell",
+"さかもとでいず":"town peach glasses",
+"めだりすと":"court snow skate","あおあし":"pitch day sball","だいやのえーす":"pitch sunset baseball","ゆーりおんあいす":"court night skate","ふりー":"sea ocean wave","ぴんぽん":"court ember paddle","かぜがつよくふいている":"field sunset star","はじめのいっぽ":"court ember glove","てにすのおうじさま":"court day racket","ほんずきのげこくじょう":"town gold book","のーげーむのーらいふ":"castle pink chess","ようじょせんき":"ruin ember wing","くもですがなにか":"mount night eye","とんでもすきるでいせかいほうろうめし":"field day pan","おとめげーむのはめつふらぐ":"castle pink ribbon","しゃんぐりらふろんてぃあ":"mount day vr","がーるずばんどくらい":"city night guitar","よるのくらげはおよげない":"city night mic","ばんどりまいご":"stage night guitar","うたのぷりんすさまっ":"stage pink star","あいどるますたー":"stage sunset mic","のだめかんたーびれ":"town peach piano","さかみちのあぽろん":"town sunset horn","なな":"city pink guitar","ごちゅうもんはうさぎですか":"town peach bunny","ばらかもん":"sea day book","あまあまといなずま":"town peach onigiri","にちじょう":"town mint boom","るりのほうせき":"mount day gem","むしし":"mount forest leaf","おうらんこうこうほすとぶ":"school pink cup","くろしつじ":"castle night key","おそまつさん":"town peach boom","わたしのしあわせなけっこん":"town sunset flower","ほりみや":"school peach heart","ゆびさきとれんれん":"city snow heart","がちあくた":"ruin ember claw","たこぴーのげんざい":"town night ufo","ひかるがしんだなつ":"field night eye","うぃっちうぉっち":"town peach wand","かたいなかのおっさんけんせいになる":"castle day sword","あぽかりぷすほてる":"ruin day robot","ろしでれ":"school snow heart","しょうしみんしりーず":"town peach glass","よふかしのうた":"city night moon","かうぼーいびばっぷ":"space night ship","こうかくきどうたい":"city night eye","すずみやはるひのゆううつ":"school day star","ゆうゆうはくしょ":"city sunset ghost","るろうにけんしん":"town sunset sword","かーどきゃぷたーさくら":"town pink card",
+"めじゃー":"pitch day baseball","あひるのそら":"court sunset bball","えすけーえいと":"city sunset skateboard","おおきくふりかぶって":"pitch day baseball","いにしゃるでぃー":"mount night car","たっち":"pitch sunset baseball","べいびーすてっぷ":"court day racket","ありふれたしょくぎょうでせかいさいきょう":"mount night claw","ろぐほらいずん":"castle day vr","まおうがくいんのふてきごうしゃ":"castle night crown","いせかいしょくどう":"town gold pan","ぜろのつかいま":"castle pink wand","てんせいしたらけんでした":"field day sword","つきがみちびくいせかいどうちゅう":"field night moon","やはりおれのせいしゅんらぶこめは":"school sunset book","にせこい":"school pink key","こみさんはこみゅしょうです":"school peach phone","かおるはなはりんとさく":"town pink flower","きみはほうかごいんそむにあ":"school night star","このおとまれ":"school sunset star","まくろすふろんてぃあ":"space night mic","らぶらいぶさんしゃいん":"sea sunset mic","しろばこ":"city day film","やまのすすめ":"mount day tent","らきすた":"town peach cup","あずまんがだいおう":"school day cat","ありあ":"sea ocean ship","ふらいんぐうぃっち":"field mint wand","えんえんのしょうぼうたい":"city ember flame","ぶらっくくろーばー":"castle day sword","ななつのたいざい":"castle sunset sword","どろろ":"mount blood sword","じごくらく":"field blood flower","ごぶりんすれいやー":"mount night shield","あじん":"city night eye","ちきゅうのうんどうについて":"field night star","きょこうすいり":"town night key","でゅららら":"city night bike","もののけ":"castle blood bottle","ぷるとぅ":"city night robot","ゔぃゔぃ":"city night mic","とらいがん":"ruin gold star","きどうせんしがんだむしーど":"space night robot","まいりましたいるまくん":"castle peach crown","はたらくまおうさま":"city day crown","ぐらんぶる":"sea ocean wave","げっかんしょうじょのざきくん":"school pink book","さいれんとうぃっち":"castle mint wand","あるまじょがしぬまで":"town mint bottle"
+};
+
+/* 小物のアイコン（64×64）。%I=線の色 %A=差し色 */
+const HEART = `<path d="M32 54C16 42 8 34 8 24a12 12 0 0 1 24-4 12 12 0 0 1 24 4c0 10-8 18-24 30z" fill="#F48FB1"/>`;
+const MOTIF = {
+  sword:`<path d="M21 43L53 11" stroke-width="4"/><path d="M15 37l12 12" stroke-width="4"/><path d="M19 45L9 55" stroke="%A" stroke-width="7"/>`,
+  flame:`<path d="M32 57c-11 0-18-8-18-17 0-9 8-14 9-24 6 4 9 10 9 15 2-3 3-6 3-9 7 6 15 12 15 20 0 9-7 15-18 15z" fill="%A"/><path d="M32 57c-5 0-8-3-8-8 0-5 5-8 7-13 4 4 9 8 9 13 0 5-3 8-8 8z" fill="#fff"/>`,
+  star:`<path d="M32 7l7 15 16 2-12 11 3 17-14-8-14 8 3-17L9 24l16-2z" fill="#F6C453"/>`,
+  hat:`<path d="M18 38c0-12 6-18 14-18s14 6 14 18" fill="#F6D58A"/><ellipse cx="32" cy="40" rx="27" ry="8" fill="#F6D58A"/><path d="M19 33c9 3 17 3 26 0" stroke="#D9473B" stroke-width="5"/>`,
+  shuriken:`<path d="M32 6l6 20 20 6-20 6-6 20-6-20-20-6 20-6z" fill="#C3CED9"/><circle cx="32" cy="32" r="4" fill="#fff"/>`,
+  rod:`<path d="M10 54L46 10" stroke-width="4"/><path d="M46 10c5 10 5 22 2 30" stroke-width="1.6"/><circle cx="48" cy="42" r="4" fill="%A"/>`,
+  wing:`<path d="M8 46c10-2 16-8 18-18 3-10 10-16 22-18-2 6-5 9-9 12 7-2 12-1 16 1-5 4-10 6-16 6 6 1 9 3 11 6-7 2-12 2-17 0 0 5-5 9-12 10-5 1-9 1-13 1z" fill="#fff"/>`,
+  chainsaw:`<rect x="8" y="25" width="20" height="18" rx="4" fill="%A"/><path d="M28 28h22a6 6 0 0 1 0 12H28z" fill="#fff"/><path d="M32 28v-4M38 28v-4M44 28v-4M50 28v-4M32 40v4M38 40v4M44 40v4M50 40v4"/><path d="M12 25c0-6 4-9 10-9"/>`,
+  magic:`<circle cx="32" cy="32" r="23" fill="#fff"/><circle cx="32" cy="32" r="16"/><path d="M32 16L46 40H18Z"/><circle cx="32" cy="32" r="3" fill="%A"/>`,
+  flower:`<g fill="#F7A8C4" stroke="none"><circle cx="32" cy="18" r="9"/><circle cx="45" cy="28" r="9"/><circle cx="40" cy="44" r="9"/><circle cx="24" cy="44" r="9"/><circle cx="19" cy="28" r="9"/></g><circle cx="32" cy="32" r="6" fill="#FFE08A" stroke="none"/>`,
+  bottle:`<path d="M26 10h12v8l6 8v26a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4V26l6-8z" fill="#fff"/><path d="M20 36h24v16a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4z" fill="#8FD3B6"/><path d="M28 6h8"/>`,
+  peanut:`<path d="M32 8c8 0 12 6 11 12-1 4-4 6-4 12s3 8 3 12c0 7-5 12-10 12s-10-5-10-12c0-4 3-6 3-12s-3-8-4-12c-1-6 3-12 11-12z" fill="#E8C08A"/><path d="M28 18h2M34 24h2M28 40h2M34 46h2"/>`,
+  guitar:`<path d="M34 34L54 12" stroke-width="5"/><path d="M22 28c-8 0-13 7-13 14s6 14 14 14 13-5 13-11c4-2 6-6 4-10s-6-6-10-4c-2-2-4-3-8-3z" fill="%A"/><circle cx="23" cy="43" r="4" fill="#fff"/>`,
+  cup:`<path d="M14 24h30v10a15 15 0 0 1-30 0z" fill="#fff"/><path d="M44 28h4a6 6 0 0 1 0 12h-6"/><path d="M12 54h34"/><path d="M24 8c-2 4 2 6 0 10M34 8c-2 4 2 6 0 10" stroke-width="2.4"/>`,
+  mic:`<rect x="24" y="8" width="16" height="26" rx="8" fill="%A"/><path d="M16 30a16 16 0 0 0 32 0M32 46v10M22 56h20"/>`,
+  vball:`<circle cx="32" cy="32" r="22" fill="#fff"/><path d="M32 10c-7 10-7 22 0 30M12 26c10 3 22 1 31-8M17 48c5-9 15-14 33-12"/>`,
+  bball:`<circle cx="32" cy="32" r="22" fill="#F08A4B"/><path d="M10 32h44M32 10v44M17 16c8 8 8 24 0 32M47 16c-8 8-8 24 0 32"/>`,
+  car:`<path d="M8 40l6-12c2-4 5-6 10-6h16c5 0 8 2 10 6l6 12v8H8z" fill="#fff"/><circle cx="20" cy="48" r="6" fill="%I"/><circle cx="44" cy="48" r="6" fill="%I"/><path d="M18 30h28" stroke-width="2"/><path d="M50 40h6" stroke="%A" stroke-width="4"/>`,
+  skateboard:`<path d="M8 34c0-3 2-4 5-4h38c3 0 5 1 5 4s-2 4-5 4H13c-3 0-5-1-5-4z" fill="%A"/><circle cx="20" cy="46" r="5" fill="#fff"/><circle cx="44" cy="46" r="5" fill="#fff"/><path d="M14 20h14M10 26h10" stroke-width="2"/>`,
+  baseball:`<circle cx="32" cy="32" r="22" fill="#fff"/><path d="M18 15c6 7 6 27 0 34M46 15c-6 7-6 27 0 34" stroke="#E2504A"/>`,
+  racket:`<ellipse cx="36" cy="25" rx="14" ry="17" fill="#fff" transform="rotate(35 36 25)"/><path d="M27 36L12 54" stroke-width="6"/><path d="M27 17l18 15M24 24l15 13M32 12l16 14" stroke-width="1.6"/><circle cx="51" cy="50" r="6" fill="#E9F27A"/>`,
+  glove:`<path d="M16 30c0-12 9-20 19-20s17 8 17 18-4 16-10 18H25c-5 0-9-4-9-8z" fill="#E2504A"/><path d="M25 46h17v10H25z" fill="#fff"/><path d="M33 26c-6 0-10 3-10 9"/>`,
+  paddle:`<circle cx="27" cy="27" r="17" fill="#E2504A"/><path d="M39 39l13 13" stroke-width="7"/><circle cx="51" cy="16" r="5" fill="#fff"/>`,
+  wave:`<path d="M6 34c6-6 12-6 18 0s12 6 18 0 12-6 16 0" stroke="%A" stroke-width="4"/><path d="M6 46c6-6 12-6 18 0s12 6 18 0 12-6 16 0" stroke-width="3"/><circle cx="42" cy="20" r="7" fill="#fff"/>`,
+  skate:`<path d="M18 12h15v20l15 6c4 2 4 9 0 9H18z" fill="#fff"/><path d="M14 54h38" stroke-width="4"/><path d="M22 47v7M44 47v7"/><path d="M24 20h6M24 26h6" stroke-width="2"/>`,
+  sball:`<circle cx="32" cy="32" r="22" fill="#fff"/><path d="M32 23l8 6-3 10H27l-3-10z" fill="%I"/><path d="M32 23V11M40 29l11-4M37 39l6 10M27 39l-6 10M24 29l-11-4"/>`,
+  bike:`<circle cx="16" cy="42" r="10"/><circle cx="48" cy="42" r="10"/><path d="M16 42l10-16h16l6 16M26 26l6 16 10-16M22 20h8M42 26l-2-6h6"/>`,
+  hourglass:`<path d="M22 8h20c0 12-10 16-10 24s10 12 10 24H22c0-12 10-16 10-24S22 20 22 8z" fill="#fff"/><path d="M18 8h28M18 56h28" stroke-width="4"/><path d="M25 53c2-6 12-6 14 0z" fill="%A"/>`,
+  slime:`<path d="M10 48c0-14 10-30 22-36 12 6 22 22 22 36 0 4-4 6-8 6H18c-4 0-8-2-8-6z" fill="#7CC6F2"/><circle cx="25" cy="38" r="3" fill="%I" stroke="none"/><circle cx="39" cy="38" r="3" fill="%I" stroke="none"/>`,
+  frog:`<ellipse cx="32" cy="40" rx="22" ry="14" fill="#7CC07A"/><circle cx="22" cy="24" r="7" fill="#fff"/><circle cx="42" cy="24" r="7" fill="#fff"/><circle cx="22" cy="24" r="2.5" fill="%I" stroke="none"/><circle cx="42" cy="24" r="2.5" fill="%I" stroke="none"/><path d="M24 44c4 3 12 3 16 0"/>`,
+  wand:`<path d="M14 54L38 28" stroke-width="5"/><path d="M45 8l3 8 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z" fill="#F6C453"/>`,
+  vr:`<rect x="8" y="22" width="48" height="22" rx="8" fill="#fff"/><rect x="14" y="27" width="14" height="10" rx="4" fill="%A"/><rect x="36" y="27" width="14" height="10" rx="4" fill="%A"/><path d="M28 44c2-4 6-4 8 0"/>`,
+  crown:`<path d="M10 46L12 20l12 12 8-16 8 16 12-12 2 26z" fill="#F6C453"/><path d="M12 53h40"/>`,
+  shield:`<path d="M32 8l20 7v15c0 13-8 22-20 26-12-4-20-13-20-26V15z" fill="#fff"/><path d="M32 16v32M22 27h20"/>`,
+  pan:`<path d="M40 26l16-10" stroke-width="5"/><circle cx="26" cy="34" r="17" fill="#fff"/><ellipse cx="26" cy="34" rx="8" ry="6" fill="#F6C453"/>`,
+  gem:`<path d="M20 12h24l10 14-22 28L10 26z" fill="#F7A8C4"/><path d="M10 26h44M24 12l-4 14 12 28 12-28-4-14"/>`,
+  phone:`<rect x="20" y="8" width="24" height="48" rx="5" fill="#fff"/><rect x="24" y="14" width="16" height="26" fill="%A"/><circle cx="32" cy="48" r="3"/>`,
+  chess:`<path d="M26 48l2-16h8l2 16zM22 56h20v-6H22z" fill="#fff"/><path d="M24 32h16"/><path d="M28 32c-6-4-4-13 4-13s10 9 4 13" fill="#fff"/><path d="M32 6v10M27 10h10"/>`,
+  robot:`<path d="M32 20V8M24 8l8 5 8-5"/><path d="M18 20h28l4 14-4 18H18l-4-18z" fill="#fff"/><path d="M22 30h20l-2 7H24z" fill="%A"/>`,
+  drill:`<path d="M8 32L44 18v28z" fill="#C3CED9"/><path d="M20 27l3 11M30 23l3 18M38 21l2 22" stroke-width="2.4"/><rect x="44" y="22" width="12" height="20" rx="3" fill="%A"/>`,
+  moon:`<path d="M42 9a23 23 0 1 0 13 35A19 19 0 0 1 42 9z" fill="#FCE7A6"/>`,
+  eye:`<path d="M8 32c8-12 16-16 24-16s16 4 24 16c-8 12-16 16-24 16S16 44 8 32z" fill="#fff"/><circle cx="32" cy="32" r="9" fill="%A"/><circle cx="32" cy="32" r="3.5" fill="%I" stroke="none"/>`,
+  apple:`<path d="M32 22c-4-4-18-4-18 12 0 12 8 22 14 22 2 0 3-1 4-1s2 1 4 1c6 0 14-10 14-22 0-16-14-16-18-12z" fill="#E2504A"/><path d="M32 22c0-6 2-10 6-12"/><path d="M34 14c4-4 10-4 12 0-4 2-8 2-12 0z" fill="#7CC07A"/>`,
+  key:`<circle cx="20" cy="32" r="11" fill="#F6C453"/><circle cx="20" cy="32" r="3.5" fill="#fff"/><path d="M31 32h24M47 32v8M53 32v6"/>`,
+  glass:`<path d="M38 38l16 16" stroke-width="6"/><circle cx="27" cy="27" r="15" fill="#fff"/><path d="M20 22a8 8 0 0 1 8-6" stroke-width="2.4"/>`,
+  book:`<path d="M8 16c8-4 16-4 24 2v38c-8-6-16-6-24-2z" fill="#fff"/><path d="M56 16c-8-4-16-4-24 2v38c8-6 16-6 24-2z" fill="#fff"/><path d="M14 26h10M14 33h10M40 26h10M40 33h10" stroke-width="2.4"/>`,
+  spoon:`<path d="M30 30L12 54" stroke-width="4"/><ellipse cx="40" cy="20" rx="9" ry="12" fill="#fff" transform="rotate(35 40 20)"/><path d="M50 40c3-3 6-3 8 0M46 48c3-2 6-1 7 2" stroke-width="2.4"/>`,
+  boom:`<path d="M32 5l6 14 14-6-6 14 14 6-14 6 6 14-14-6-6 14-6-14-14 6 6-14-14-6 14-6-6-14 14 6z" fill="#F6C453"/>`,
+  parfait:`<path d="M32 42v12M24 56h16"/><path d="M20 22h24l-6 20H26z" fill="#fff"/><path d="M20 22c0-8 6-11 12-11s12 3 12 11z" fill="#FDE6D2"/><circle cx="32" cy="9" r="4" fill="#E2504A"/>`,
+  heart: HEART,
+  heartbreak: HEART + `<path d="M32 20l-5 10 8 6-5 10" stroke="#fff" stroke-width="3"/>`,
+  ring:`<circle cx="32" cy="40" r="14"/><path d="M24 20l8-11 8 11-8 8z" fill="#A6E1F5"/>`,
+  umbrella:`<path d="M32 32v18a5 5 0 0 1-10 0"/><path d="M8 32a24 24 0 0 1 48 0c-4-3-8-3-12 0-4-3-8-3-12 0-4-3-8-3-12 0-4-3-8-3-12 0z" fill="%A"/>`,
+  bunny:`<path d="M24 52c-6-14-8-36-2-44 6 6 8 28 8 44zM40 52c6-14 8-36 2-44-6 6-8 28-8 44z" fill="#fff"/><path d="M14 54c12-6 24-6 36 0" stroke-width="5"/>`,
+  piano:`<rect x="8" y="18" width="48" height="30" rx="3" fill="#fff"/><path d="M16 18v30M24 18v30M32 18v30M40 18v30M48 18v30"/><path d="M13.5 18h5v17h-5zM21.5 18h5v17h-5zM37.5 18h5v17h-5zM45.5 18h5v17h-5z" fill="%I" stroke="none"/>`,
+  dango:`<path d="M32 4v58"/><circle cx="32" cy="16" r="9" fill="#F7A8C4"/><circle cx="32" cy="33" r="9" fill="#fff"/><circle cx="32" cy="50" r="9" fill="#8FD3B6"/>`,
+  letter:`<rect x="8" y="16" width="48" height="34" rx="3" fill="#fff"/><path d="M8 18l24 18 24-18"/><circle cx="32" cy="36" r="5" fill="#E2504A" stroke="none"/>`,
+  horn:`<path d="M8 28h28l14-10v28L36 36H8z" fill="#F6C453"/><path d="M16 28v-6M22 28v-6M28 28v-6"/>`,
+  tent:`<path d="M4 52h56"/><path d="M8 52L32 14l24 38z" fill="%A"/><path d="M32 14v38M26 52l6-14 6 14" fill="#fff"/>`,
+  leaf:`<path d="M12 52C12 26 26 12 54 10c0 28-16 42-42 42z" fill="#8FD3B6"/><path d="M12 52L40 24"/>`,
+  cat:`<path d="M14 26l-2-16 12 8h16l12-8-2 16c4 4 6 10 6 14 0 10-10 16-22 16S10 50 10 40c0-4 2-10 4-14z" fill="#fff"/><circle cx="24" cy="38" r="2.5" fill="%I" stroke="none"/><circle cx="40" cy="38" r="2.5" fill="%I" stroke="none"/><path d="M29 44l3 2 3-2"/>`,
+  shogi:`<path d="M32 7l14 8 4 39H14l4-39z" fill="#F3D6A4"/><path d="M27 26h10M32 26v16M26 40h12" stroke-width="2.4"/>`,
+  card:`<g transform="rotate(-10 32 32)"><rect x="18" y="8" width="28" height="46" rx="3" fill="#fff"/><path d="M26 18v26M32 18v20M38 18v26" stroke-width="2.4"/></g>`,
+  clock:`<circle cx="32" cy="32" r="22" fill="#fff"/><path d="M32 18v14l9 6"/><circle cx="32" cy="32" r="2.5" fill="%I" stroke="none"/>`,
+  whistle:`<path d="M10 26h30a13 13 0 1 1-13 13H10z" fill="#fff"/><circle cx="40" cy="39" r="4" fill="%A"/><path d="M50 18l6-6"/>`,
+  butterfly:`<path d="M32 30c-4-12-14-20-22-16s0 18 10 18c-8 2-10 12-4 14s14-6 16-14c2 8 10 16 16 14s4-12-4-14c10 0 18-14 10-18s-18 4-22 16z" fill="%A"/><path d="M32 22v26"/>`,
+  ufo:`<path d="M20 34a12 12 0 0 1 24 0" fill="#9FE3D6"/><ellipse cx="32" cy="37" rx="26" ry="9" fill="#C3CED9"/><path d="M22 48l-4 9M42 48l4 9M32 48v9" stroke-width="2.4" opacity=".7"/>`,
+  claw:`<path d="M20 10l-8 44M34 8l-5 48M48 10l-4 44" stroke="#E2504A" stroke-width="5"/>`,
+  horseshoe:`<path d="M18 54V30a14 14 0 0 1 28 0v24" stroke-width="13"/><path d="M18 54V30a14 14 0 0 1 28 0v24" stroke="#E8C773" stroke-width="8"/>`,
+  penguin:`<ellipse cx="32" cy="36" rx="15" ry="21" fill="%I"/><ellipse cx="32" cy="40" rx="9" ry="14" fill="#fff" stroke="none"/><circle cx="27" cy="25" r="2" fill="#fff" stroke="none"/><circle cx="37" cy="25" r="2" fill="#fff" stroke="none"/><path d="M29 30l3 3 3-3z" fill="#F6C453"/>`,
+  ship:`<path d="M32 8v34"/><path d="M34 10l17 26H34z" fill="#fff"/><path d="M30 14L15 36h15z" fill="#fff"/><path d="M8 42h48l-8 12H16z" fill="#C98B5A"/>`,
+  gold:`<path d="M10 44l8-18 14-6 14 4 8 14-4 10-20 4z" fill="#F6C453"/><path d="M22 30l6 4M38 28l2 6" stroke-width="2.4"/>`,
+  ribbon:`<path d="M32 32L10 18v28zM32 32l22-14v28z" fill="#F48FB1"/><circle cx="32" cy="32" r="6" fill="#F48FB1"/>`,
+  scissors:`<path d="M24 40L46 8M40 40L18 8"/><circle cx="20" cy="47" r="7" fill="#fff"/><circle cx="44" cy="47" r="7" fill="#fff"/>`,
+  shuttle:`<path d="M22 10h20l-6 30h-8z" fill="#fff"/><path d="M29 10l1 30M35 10l-1 30"/><circle cx="32" cy="46" r="8" fill="%A"/>`,
+  bat:`<path d="M32 22c-5-6-14-8-26-3 5 3 7 7 7 11 4-2 9-2 11 2 2-2 6-3 8 0 2-3 6-2 8 0 2-4 7-4 11-2 0-4 2-8 7-11-12-5-21-3-26 3z" fill="%I"/>`,
+  flask:`<path d="M26 8h12M28 8v16L14 50a4 4 0 0 0 4 6h28a4 4 0 0 0 4-6L36 24V8" fill="#fff"/><path d="M19 42h26l5 8a4 4 0 0 1-4 6H18a4 4 0 0 1-4-6z" fill="#8FD3B6"/>`,
+  chalice:`<path d="M32 34v14M22 54h20M25 48h14"/><path d="M18 10h28c0 16-6 24-14 24S18 26 18 10z" fill="#F6C453"/>`,
+  bolt:`<path d="M36 6L14 36h14l-4 22 24-32H34z" fill="#F6C453"/>`,
+  game:`<path d="M18 20h28c8 0 12 8 12 18 0 8-4 12-8 12-5 0-7-6-12-6H26c-5 0-7 6-12 6-4 0-8-4-8-12 0-10 4-18 12-18z" fill="#fff"/><path d="M18 30v8M14 34h8"/><circle cx="44" cy="31" r="2.5" fill="%A"/><circle cx="49" cy="36" r="2.5" fill="%A"/>`,
+  ghost:`<path d="M14 54V30a18 18 0 0 1 36 0v24l-6-4-6 4-6-4-6 4-6-4z" fill="#fff"/><circle cx="26" cy="30" r="3" fill="%I" stroke="none"/><circle cx="38" cy="30" r="3" fill="%I" stroke="none"/>`,
+  palette:`<path d="M32 8C18 8 8 18 8 30s10 24 22 24c4 0 6-2 6-5s-3-4-3-7 3-5 6-5h7c6 0 10-4 10-10C56 16 46 8 32 8z" fill="#fff"/><g stroke="none"><circle cx="20" cy="28" r="4" fill="#E2504A"/><circle cx="28" cy="18" r="4" fill="#F6C453"/><circle cx="40" cy="18" r="4" fill="#4FA3D9"/><circle cx="47" cy="28" r="4" fill="#7CC07A"/></g>`,
+  film:`<rect x="10" y="26" width="44" height="28" rx="3" fill="#fff"/><path d="M10 26l2-12 42-6 2 12z" fill="%I"/><path d="M21 13l5 9M33 11l5 9M45 9l5 9" stroke="#fff"/>`,
+  milk:`<path d="M24 8h16v6l4 8v30a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4V22l4-8z" fill="#fff"/><path d="M20 30h24"/><path d="M26 40h12" stroke="%A" stroke-width="4"/>`,
+  paw:`<g fill="%A" stroke="none"><ellipse cx="32" cy="42" rx="12" ry="10"/><circle cx="16" cy="28" r="5.5"/><circle cx="26" cy="18" r="5.5"/><circle cx="38" cy="18" r="5.5"/><circle cx="48" cy="28" r="5.5"/></g>`,
+  onigiri:`<path d="M32 10c6 0 22 30 22 38 0 6-4 8-10 8H20c-6 0-10-2-10-8 0-8 16-38 22-38z" fill="#fff"/><rect x="23" y="40" width="18" height="16" fill="%I"/>`,
+  arrowup:`<rect x="10" y="10" width="44" height="44" rx="10" fill="#4FA3D9"/><path d="M32 46V20M22 30l10-10 10 10" stroke="#fff" stroke-width="5"/>`,
+  dumbbell:`<path d="M18 32h28" stroke-width="5"/><rect x="8" y="20" width="10" height="24" rx="3" fill="%A"/><rect x="46" y="20" width="10" height="24" rx="3" fill="%A"/>`,
+  glasses:`<path d="M30 32c1-2 3-2 4 0M10 32L5 26M54 32l5-6"/><circle cx="20" cy="34" r="10" fill="#fff"/><circle cx="44" cy="34" r="10" fill="#fff"/>`
+};
+
+function rng(seed){
+  let s = 2166136261;
+  for (const ch of String(seed)) s = Math.imul(s ^ ch.charCodeAt(0), 16777619) >>> 0;
+  return () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s / 4294967296; };
+}
+const f1 = n => Math.round(n * 10) / 10;
+let sceneN = 0;
+
+function cloud(x, y, k){
+  return `<g fill="#fff" opacity=".88"><ellipse cx="${f1(x)}" cy="${f1(y)}" rx="${f1(48*k)}" ry="${f1(15*k)}"/><circle cx="${f1(x-18*k)}" cy="${f1(y-7*k)}" r="${f1(15*k)}"/><circle cx="${f1(x+5*k)}" cy="${f1(y-15*k)}" r="${f1(21*k)}"/><circle cx="${f1(x+28*k)}" cy="${f1(y-5*k)}" r="${f1(13*k)}"/></g>`;
+}
+function city(r, W, H, u, lo, hi, fill, win, broken){
+  let x = -12 * u, out = "";
+  while (x < W + 12 * u){
+    const bw = (16 + r() * 30) * u;
+    let bh = lo + r() * (hi - lo);
+    const tower = !broken && r() < .14;
+    if (tower) bh *= 1.45;
+    const y = H - bh;
+    if (broken){
+      out += `<path d="M${f1(x)} ${f1(H + 2)}V${f1(y + bh*.12)}L${f1(x + bw*.3)} ${f1(y)}L${f1(x + bw*.5)} ${f1(y + bh*.16)}L${f1(x + bw*.72)} ${f1(y + bh*.05)}L${f1(x + bw)} ${f1(y + bh*.22)}V${f1(H + 2)}Z" fill="${fill}"/>`;
+    } else {
+      out += `<rect x="${f1(x)}" y="${f1(y)}" width="${f1(bw)}" height="${f1(bh + 2)}" rx="${f1(2*u)}" fill="${fill}"/>`;
+      if (win) out += `<rect x="${f1(x)}" y="${f1(y + 6*u)}" width="${f1(bw)}" height="${f1(bh)}" fill="${win}"/>`;
+      if (tower) out += `<path d="M${f1(x + bw/2 - 4*u)} ${f1(y)}L${f1(x + bw/2)} ${f1(y - 26*u)}L${f1(x + bw/2 + 4*u)} ${f1(y)}Z" fill="${fill}"/>`;
+    }
+    x += bw + (r() < .3 ? 6 * u : 0);
+  }
+  return out;
+}
+function hills(r, W, H, base, amp, fill, n){
+  const st = W / n;
+  let d = `M0 ${f1(H + 2)}L0 ${f1(base - amp*.3*r())}`;
+  for (let i = 0; i < n; i++) d += `Q${f1(st*i + st/2)} ${f1(base - amp*(.5 + r()*.8))} ${f1(st*(i + 1))} ${f1(base - amp*.3*r())}`;
+  return `<path d="${d}L${f1(W)} ${f1(H + 2)}Z" fill="${fill}"/>`;
+}
+function peaks(r, W, H, base, amp, fill, n, snow){
+  const st = W / n;
+  let d = `M0 ${f1(H + 2)}L0 ${f1(base)}`, caps = "";
+  for (let i = 0; i < n; i++){
+    const px = st*i + st*(.3 + r()*.4), py = base - amp*(.55 + r()*.45), a = amp;
+    d += `L${f1(px)} ${f1(py)}L${f1(st*(i + 1))} ${f1(base - amp*.12*r())}`;
+    if (snow) caps += `<path d="M${f1(px)} ${f1(py)}l${f1(-.05*a)} ${f1(.14*a)}l${f1(.025*a)} ${f1(-.025*a)}l${f1(.025*a)} ${f1(.03*a)}l${f1(.025*a)} ${f1(-.03*a)}l${f1(.025*a)} ${f1(.025*a)}Z" fill="#fff" opacity=".9"/>`;
+  }
+  return `<path d="${d}L${f1(W)} ${f1(H + 2)}Z" fill="${fill}"/>` + caps;
+}
+function pines(r, W, H, u, n, fill){
+  let s = "";
+  for (let i = 0; i < n; i++){
+    const x = r() * W, h = (20 + r() * 24) * u, w = h * .5, y = H + 2 - r() * 6 * u;
+    s += `<path d="M${f1(x)} ${f1(y - h)}L${f1(x + w/2)} ${f1(y)}H${f1(x - w/2)}Z" fill="${fill}"/>`;
+  }
+  return s;
+}
+function trees(r, W, H, u, n, fill, yb){
+  let s = "";
+  for (let i = 0; i < n; i++){
+    const x = r() * W, rr = (9 + r() * 9) * u, y = yb - r() * 8 * u;
+    s += `<rect x="${f1(x - 1.5*u)}" y="${f1(y - 4*u)}" width="${f1(3*u)}" height="${f1(H - y + 6*u)}" fill="${fill}"/><circle cx="${f1(x)}" cy="${f1(y - rr)}" r="${f1(rr)}" fill="${fill}"/>`;
+  }
+  return s;
+}
+function houses(r, W, H, u, fill, win, base){
+  let s = "", x = -8 * u;
+  while (x < W){
+    const w = (30 + r() * 26) * u, h = (18 + r() * 16) * u, y = base - h, rh = (10 + r() * 8) * u;
+    s += `<rect x="${f1(x)}" y="${f1(y)}" width="${f1(w)}" height="${f1(H - y + 2)}" fill="${fill}"/>`;
+    s += `<path d="M${f1(x - 4*u)} ${f1(y)}L${f1(x + w*.2)} ${f1(y - rh)}H${f1(x + w*.8)}L${f1(x + w + 4*u)} ${f1(y)}Z" fill="${fill}"/>`;
+    if (r() < .7) s += `<rect x="${f1(x + w*.3)}" y="${f1(y + h*.3)}" width="${f1(w*.22)}" height="${f1(h*.28)}" fill="${win}" opacity=".75"/>`;
+    x += w + (2 + r() * 10) * u;
+  }
+  return s;
+}
+function poles(r, W, H, u, fill){
+  const top = H * .4, xs = [W*.16 + r()*W*.08, W*.5 + r()*W*.08, W*.84 + r()*W*.08];
+  let s = xs.map(x => `<rect x="${f1(x - 1.5*u)}" y="${f1(top)}" width="${f1(3*u)}" height="${f1(H - top + 2)}" fill="${fill}"/><rect x="${f1(x - 9*u)}" y="${f1(top + 5*u)}" width="${f1(18*u)}" height="${f1(2*u)}" fill="${fill}"/>`).join("");
+  for (let i = 0; i < xs.length - 1; i++) for (const dy of [6, 10])
+    s += `<path d="M${f1(xs[i])} ${f1(top + dy*u)}Q${f1((xs[i] + xs[i+1]) / 2)} ${f1(top + (dy + 14)*u)} ${f1(xs[i+1])} ${f1(top + dy*u)}" fill="none" stroke="${fill}" stroke-width="${f1(u)}"/>`;
+  return s;
+}
+function school(r, W, H, u, p){
+  let s = hills(r, W, H, H*.66, H*.1, p.far, 3);
+  const x0 = W*.08, bw = W*.6, top = H*.5, cx = x0 + bw/2, tw = W*.09;
+  s += `<rect x="${f1(x0)}" y="${f1(top)}" width="${f1(bw)}" height="${f1(H - top + 2)}" fill="#FFF9F0"/>`;
+  s += `<rect x="${f1(x0 - 4*u)}" y="${f1(top - 4*u)}" width="${f1(bw + 8*u)}" height="${f1(6*u)}" fill="${p.near}"/>`;
+  s += `<rect x="${f1(cx - tw/2)}" y="${f1(top - 24*u)}" width="${f1(tw)}" height="${f1(24*u)}" fill="#FFF9F0"/><rect x="${f1(cx - tw/2 - 3*u)}" y="${f1(top - 27*u)}" width="${f1(tw + 6*u)}" height="${f1(5*u)}" fill="${p.near}"/><circle cx="${f1(cx)}" cy="${f1(top - 11*u)}" r="${f1(7*u)}" fill="#fff" stroke="${p.near}" stroke-width="${f1(1.6*u)}"/>`;
+  const cols = Math.floor((bw - 6*u) / (16*u));
+  for (let row = 0; row < 3; row++) for (let c = 0; c < cols; c++)
+    s += `<rect x="${f1(x0 + 6*u + c*16*u)}" y="${f1(top + 8*u + row*20*u)}" width="${f1(10*u)}" height="${f1(11*u)}" rx="${f1(1.5*u)}" fill="${p.far}"/>`;
+  for (let i = 0; i < 3; i++){
+    const x = x0 + bw + 10*u + r() * (W - x0 - bw - 10*u), rr = (12 + r() * 10) * u;
+    s += `<circle cx="${f1(x)}" cy="${f1(H - rr * .8)}" r="${f1(rr)}" fill="${p.near}"/>`;
+  }
+  return s;
+}
+function sea(r, W, H, u, p, id, ice){
+  const hz = H * .62;
+  let s = `<path d="M${f1(W*.04)} ${f1(hz)}Q${f1(W*.17)} ${f1(hz - H*.08)} ${f1(W*.3)} ${f1(hz)}Z" fill="${p.far}"/>`;
+  if (ice) for (let i = 0; i < 4; i++){
+    const x = r() * W * .9, w = (34 + r() * 50) * u, h = (12 + r() * 26) * u;
+    s += `<path d="M${f1(x)} ${f1(hz + 1)}l${f1(w*.2)} ${f1(-h)}l${f1(w*.25)} ${f1(h*.3)}l${f1(w*.2)} ${f1(-h*.5)}l${f1(w*.35)} ${f1(h*1.2)}Z" fill="#fff"/>`;
+  }
+  s += `<rect x="0" y="${f1(hz)}" width="${W}" height="${f1(H - hz + 2)}" fill="url(#${id}s)"/>`;
+  for (let i = 0; i < Math.round(W / 34); i++){
+    const x = r() * W, y = hz + 5*u + r() * (H - hz - 24*u);
+    s += `<path d="M${f1(x)} ${f1(y)}h${f1((10 + r() * 22) * u)}" stroke="#fff" stroke-width="${f1(1.6*u)}" stroke-linecap="round" opacity=".7"/>`;
+  }
+  return s;
+}
+function castle(r, W, H, u, p){
+  let s = hills(r, W, H, H*.7, H*.08, p.far, 3);
+  const x0 = W*.1, base = H*.8, c = p.near, ww = W*.42;
+  s += `<rect x="${f1(x0)}" y="${f1(base - 34*u)}" width="${f1(ww)}" height="${f1(H - base + 36*u)}" fill="${c}"/>`;
+  for (let x = x0; x < x0 + ww - 4*u; x += 10*u) s += `<rect x="${f1(x)}" y="${f1(base - 40*u)}" width="${f1(5*u)}" height="${f1(7*u)}" fill="${c}"/>`;
+  [[x0 - 4*u, 70, 12], [x0 + ww*.42, 98, 15], [x0 + ww - 20*u, 78, 12]].forEach(([tx, th, tw]) => {
+    th *= u; tw *= u;
+    s += `<rect x="${f1(tx)}" y="${f1(base - th)}" width="${f1(tw*2)}" height="${f1(H - base + th + 2)}" fill="${c}"/>`
+      + `<path d="M${f1(tx - 3*u)} ${f1(base - th)}L${f1(tx + tw)} ${f1(base - th - tw*1.9)}L${f1(tx + tw*2 + 3*u)} ${f1(base - th)}Z" fill="${c}"/>`
+      + `<rect x="${f1(tx + tw*.7)}" y="${f1(base - th + 10*u)}" width="${f1(tw*.6)}" height="${f1(9*u)}" rx="${f1(tw*.3)}" fill="${p.win}" opacity=".85"/>`;
+  });
+  return s;
+}
+function stage(r, W, H, u, p){
+  let s = "";
+  for (let i = 0; i < 4; i++){
+    const x = W * (.14 + i * .24), dx = (i % 2 ? 1 : -1) * 30 * u, w = 34 * u;
+    s += `<path d="M${f1(x - 5*u)} 0H${f1(x + 5*u)}L${f1(x + dx + w)} ${f1(H*.74)}H${f1(x + dx - w)}Z" fill="#fff" opacity=".18"/>`;
+  }
+  s += `<rect x="0" y="${f1(H*.72)}" width="${W}" height="${f1(H*.28 + 2)}" fill="${p.near}"/><rect x="0" y="${f1(H*.72)}" width="${W}" height="${f1(2*u)}" fill="#fff" opacity=".45"/>`;
+  const cols = ["#F48FB1", "#F6C453", "#7CD3F5", "#9FE3B0"];
+  for (let x = -6*u; x < W + 10*u; x += (14 + r() * 6) * u){
+    const y = H - (2 + r() * 8) * u;
+    if (r() < .45) s += `<path d="M${f1(x + 5*u)} ${f1(y - 20*u)}l${f1(7*u)} ${f1(-18*u)}" stroke="${cols[Math.floor(r() * 4)]}" stroke-width="${f1(3*u)}" stroke-linecap="round"/>`;
+    s += `<circle cx="${f1(x)}" cy="${f1(y - 17*u)}" r="${f1(7*u)}" fill="${p.fig}"/><rect x="${f1(x - 10*u)}" y="${f1(y - 10*u)}" width="${f1(20*u)}" height="${f1(30*u)}" rx="${f1(8*u)}" fill="${p.fig}"/>`;
+  }
+  return s;
+}
+function court(r, W, H, u, p, id){
+  const fl = H * .64, n = W > 600 ? 6 : 3, ww = W / n;
+  let s = `<rect x="0" y="0" width="${W}" height="${f1(fl)}" fill="${p.far}"/>`;
+  for (let i = 0; i < n; i++) s += `<rect x="${f1(i*ww + ww*.14)}" y="${f1(H*.1)}" width="${f1(ww*.72)}" height="${f1(fl*.46)}" rx="${f1(4*u)}" fill="url(#${id}g)"/>`;
+  s += `<rect x="0" y="${f1(fl - 4*u)}" width="${W}" height="${f1(4*u)}" fill="${p.near}"/><rect x="0" y="${f1(fl)}" width="${W}" height="${f1(H - fl + 2)}" fill="#E6B984"/>`;
+  for (let i = 1; i < 5; i++) s += `<rect x="0" y="${f1(fl + i*(H - fl)/5)}" width="${W}" height="${f1(u)}" fill="#D3A16B"/>`;
+  s += `<path d="M${f1(W*.06)} ${f1(H + 2)}L${f1(W*.2)} ${f1(fl + 8*u)}H${f1(W*.8)}L${f1(W*.94)} ${f1(H + 2)}M${f1(W*.5)} ${f1(fl + 8*u)}V${f1(H + 2)}" fill="none" stroke="#fff" stroke-width="${f1(2*u)}"/>`;
+  return s;
+}
+function pitch(r, W, H, u, p){
+  const top = H * .4, fl = H * .6, g = H - fl;
+  let s = `<rect x="0" y="${f1(top)}" width="${W}" height="${f1(fl - top)}" fill="${p.far}"/><rect x="0" y="${f1(top - 2*u)}" width="${W}" height="${f1(4*u)}" fill="${p.near}"/>`;
+  for (let i = 1; i < 4; i++) s += `<rect x="0" y="${f1(top + i*(fl - top)/4)}" width="${W}" height="${f1(1.5*u)}" fill="${p.near}" opacity=".35"/>`;
+  s += `<rect x="0" y="${f1(fl)}" width="${W}" height="${f1(g + 2)}" fill="#7DC274"/><rect x="0" y="${f1(fl + g*.25)}" width="${W}" height="${f1(g*.25)}" fill="#71B868"/><rect x="0" y="${f1(fl + g*.75)}" width="${W}" height="${f1(g*.25 + 2)}" fill="#71B868"/>`;
+  s += `<path d="M0 ${f1(fl + g*.45)}H${W}" stroke="#fff" stroke-width="${f1(2*u)}" opacity=".85"/><ellipse cx="${f1(W*.5)}" cy="${f1(fl + g*.45)}" rx="${f1(40*u)}" ry="${f1(10*u)}" fill="none" stroke="#fff" stroke-width="${f1(2*u)}" opacity=".85"/>`;
+  return s;
+}
+function ground(set, r, W, H, u, p, id, o){
+  switch (set){
+    case "school": return school(r, W, H, u, p);
+    case "sea":    return sea(r, W, H, u, p, id, false);
+    case "snow":   return sea(r, W, H, u, p, id, true);
+    case "field":  return hills(r, W, H, H*.64, H*.12, p.far, 3) + hills(r, W, H, H*.8, H*.1, p.near, 2) + trees(r, W, H, u, 3, p.ledge, H*.84);
+    case "mount":  return peaks(r, W, H, H*.74, H*.46, p.far, 5, p === PAL.snow || p === PAL.day || p === PAL.sunset) + peaks(r, W, H, H*.9, H*.3, p.near, 4, false) + pines(r, W, H, u, 8, p.ledge);
+    case "castle": return castle(r, W, H, u, p);
+    case "town":   return hills(r, W, H, H*.66, H*.1, p.far, 3) + houses(r, W, H, u, p.near, p.win, H*.84) + poles(r, W, H, u, p.ledge);
+    case "ruin":   return city(r, W, H, u, H*.26, H*.5, p.far, "", true) + city(r, W, H, u, H*.12, H*.3, p.near, "", true);
+    case "stage":  return stage(r, W, H, u, p);
+    case "court":  return court(r, W, H, u, p, id);
+    case "pitch":  return pitch(r, W, H, u, p);
+    case "space":  return `<circle cx="${f1(W*.5)}" cy="${f1(H*1.75)}" r="${f1(H)}" fill="${p.near}" stroke="${p.far}" stroke-width="${f1(4*u)}"/>`;
+    default: {
+      const lo = H * (o.lo || .3), hi = H * (o.hi || .58);
+      return city(r, W, H, u, lo, hi, p.far, "") + city(r, W, H, u, lo*.5, hi*.62, p.near, `url(#${id}w)`);
+    }
+  }
+}
+function person(x, base, k, fill){
+  return `<g transform="translate(${f1(x)} ${f1(base)}) scale(${k.toFixed(3)})" fill="${fill}">`
+    + `<path d="M-50 0L-44-92Q-40-120-10-126H10Q40-120 44-92L50 0Z"/><ellipse cx="0" cy="-124" rx="28" ry="11"/>`
+    + `<path d="M-29-146Q-31-186 0-186Q31-186 29-146L31-128Q0-118-31-128Z"/>`
+    + `<path d="M-50-30Q-46-70-30-96" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="3"/></g>`;
+}
+function badge(m, cx, cy, R, p){
+  const art = MOTIF[m];
+  if (!art) return "";
+  const k = R * 1.36 / 64;
+  return `<circle cx="${f1(cx)}" cy="${f1(cy + R*.08)}" r="${f1(R)}" fill="#000" opacity=".08"/><circle cx="${f1(cx)}" cy="${f1(cy)}" r="${f1(R)}" fill="#fff" opacity=".95"/>`
+    + `<g transform="translate(${f1(cx - 32*k)} ${f1(cy - 32*k)}) scale(${k.toFixed(3)})" fill="none" stroke="${p.fig}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">`
+    + art.split("%I").join(p.fig).split("%A").join(p.acc) + `</g>`;
+}
+/* o: w, h, pal, set, motif, seed, clouds, planet:[x,y], fig:[x,scale], badge:[x,y], lo, hi, sunX */
+function scene(o){
+  const W = o.w || 400, H = o.h || 260, p = PAL[o.pal] || PAL.day, r = rng(o.seed || "x"), id = "sc" + (++sceneN), u = H / 260, set = o.set || "city";
+  let s = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"><defs>`
+    + `<linearGradient id="${id}g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.s1}"/><stop offset="1" stop-color="${p.s2}"/></linearGradient>`
+    + `<linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.far}"/><stop offset="1" stop-color="${p.near}"/></linearGradient>`
+    + `<radialGradient id="${id}r"><stop offset="0" stop-color="${p.sun}" stop-opacity=".95"/><stop offset="1" stop-color="${p.sun}" stop-opacity="0"/></radialGradient>`
+    + `<pattern id="${id}w" width="${f1(10*u)}" height="${f1(12*u)}" patternUnits="userSpaceOnUse"><rect x="${f1(3*u)}" y="${f1(3*u)}" width="${f1(4*u)}" height="${f1(5*u)}" fill="${p.win}" opacity=".5"/></pattern></defs>`
+    + `<rect width="${W}" height="${H}" fill="url(#${id}g)"/>`;
+  s += `<circle cx="${f1(W * (o.sunX || (.55 + r() * .35)))}" cy="${f1(H * (.2 + r() * .12))}" r="${f1(H * .5)}" fill="url(#${id}r)"/>`;
+  if (p.stars || set === "space") for (let i = 0; i < Math.round(W * H / 2400); i++)
+    s += `<circle cx="${f1(r() * W)}" cy="${f1(r() * H * .6)}" r="${f1((r() * 1.1 + .4) * Math.max(1, u * .6))}" fill="#fff" opacity="${(.35 + r() * .6).toFixed(2)}"/>`;
+  const planet = o.planet || (set === "space" ? [.16, .2] : null);
+  if (planet){
+    const px = W * planet[0], py = H * planet[1], pr = 22 * u;
+    s += `<g transform="rotate(-18 ${f1(px)} ${f1(py)})"><circle cx="${f1(px)}" cy="${f1(py)}" r="${f1(pr)}" fill="#F4A970"/><ellipse cx="${f1(px)}" cy="${f1(py)}" rx="${f1(pr*1.9)}" ry="${f1(pr*.42)}" fill="none" stroke="#fff" stroke-width="${f1(3*u)}"/></g>`;
+  }
+  const nc = o.clouds == null ? 3 : o.clouds;
+  if (set !== "space") for (let i = 0; i < nc; i++) s += cloud(r() * W, H * (.16 + r() * .3), u * (.7 + r() * .7));
+  s += ground(set, r, W, H, u, p, id, o);
+  const fig = set === "stage" ? null : o.fig;
+  if (fig){
+    s += person(W * fig[0], H + 6 * u, fig[1] * u, p.fig);
+    if (["city", "ruin", "school", "sea", "town"].includes(set))
+      s += `<rect x="0" y="${f1(H - 16*u)}" width="${W}" height="${f1(16*u + 1)}" fill="${p.ledge}"/><rect x="0" y="${f1(H - 18*u)}" width="${W}" height="${f1(3*u)}" fill="#fff" opacity=".25"/>`;
+    else if (["field", "mount", "castle", "snow"].includes(set))
+      s += hills(r, W, H, H - 12*u, 8*u, p.ledge, 2);
+  }
+  if (o.motif){
+    const b = o.badge || (fig ? [fig[0] < .5 ? .74 : .26, .34] : [.5, .3]);
+    s += badge(o.motif, W * b[0], H * b[1], H * .2, p);
+  }
+  return s + "</svg>";
+}
+/* ---------- サイトのデータ（管理ページから保存される） ----------
+   photos: {作品ID: {a: 画像のID, credit: 出典}} / watch: 配信サービスの広告設定 */
+const ASSET_ID = /^[A-Za-z0-9_-]{8,64}$/;
+function cleanSite(d){
+  d = d && typeof d === "object" ? d : {};
+  const photos = {};
+  Object.entries(d.photos && typeof d.photos === "object" ? d.photos : {}).forEach(([id, p]) => {
+    if (BY_ID[id] && p && ASSET_ID.test(p.a || "")) photos[id] = { a: p.a, credit: String(p.credit || "").slice(0, 120) };
+  });
+  const w = d.watch && typeof d.watch === "object" ? d.watch : {};
+  const aff = w.aff && typeof w.aff === "object" ? w.aff : {};
+  const affOut = {};
+  AFF_SERVICES.forEach(s => { affOut[s.key] = String(aff[s.key] || ""); });
+  return { photos, watch: { amazonTag: String(w.amazonTag || ""), aff: affOut }, siteUrl: String(d.siteUrl || "") };
+}
+/* 配信サービス。広告のIDやリンクが入っていれば広告リンク、なければふつうの検索リンク。
+   aff: "amazon"＝Amazonアソシエイトのトラッキング ID / "link"＝広告リンクを入れられる / ""＝広告の仕組みなし。
+   並び順は「広告リンクが入っている → 広告の仕組みがある → ない」、同じなら下の順 */
+const SERVICES = [
+  { key: "prime",   name: "Prime Video",      aff: "amazon", search: q => `https://www.amazon.co.jp/s?k=${q}&i=instant-video` },
+  { key: "unext",   name: "U-NEXT",           aff: "link",   search: q => `https://video.unext.jp/freeword?query=${q}` },
+  { key: "dmm",     name: "DMM TV",           aff: "link",   search: q => `https://tv.dmm.com/search/?keyword=${q}` },
+  { key: "danime",  name: "dアニメストア",    aff: "link",   search: q => `https://animestore.docomo.ne.jp/animestore/sch_pc?searchKey=${q}` },
+  { key: "abema",   name: "ABEMA",            aff: "link",   search: q => `https://abema.tv/search?q=${q}` },
+  { key: "hulu",    name: "Hulu",             aff: "link",   search: q => `https://www.hulu.jp/search?q=${q}` },
+  { key: "lemino",  name: "Lemino",           aff: "link",   search: q => `https://lemino.docomo.ne.jp/search/word/${q}` },
+  { key: "fod",     name: "FOD",              aff: "link",   search: q => `https://fod.fujitv.co.jp/psearch/?keyword=${q}` },
+  /* ディズニープラスには検索ページのアドレスがないので、トップページ */
+  { key: "disney",  name: "ディズニープラス", aff: "link",   search: () => "https://www.disneyplus.com/ja-jp" },
+  { key: "netflix", name: "Netflix",          aff: "",       search: q => `https://www.netflix.com/search?q=${q}` }
+];
+const AFF_SERVICES = SERVICES.filter(s => s.aff === "link");
+const BY_SVC = Object.fromEntries(SERVICES.map(s => [s.key, s]));
+
+/* 作品ごとの「見放題で見られるサービス」。2026年11月に、配信をまとめたサイト（各作品の1期が中心）で調べたもの。
+   配信は毎月のように変わるので、ときどき調べ直すこと */
+const AVAIL_DATE = "2026年11月";
+const AVAIL = {
+  "きめつのやいば":"dmm unext danime prime netflix disney hulu lemino abema fod",
+  "じゅじゅつかいせん":"unext dmm lemino danime prime disney hulu abema netflix fod",
+  "ぼくのひーろーあかでみあ":"dmm unext netflix prime hulu disney abema lemino fod",
+  "わんぴーす":"dmm unext netflix prime danime lemino fod",
+  "なると":"unext dmm danime netflix hulu lemino fod",
+  "はんたーはんたー":"dmm unext danime hulu prime netflix",
+  "しんげきのきょじん":"unext dmm lemino danime prime hulu netflix abema fod disney",
+  "ちぇんそーまん":"dmm unext netflix prime danime lemino disney hulu abema fod",
+  "はがねのれんきんじゅつし":"unext netflix",
+  "そうそうのふりーれん":"unext dmm lemino danime prime hulu abema netflix fod",
+  "くすりやのひとりごと":"unext dmm hulu netflix prime danime lemino abema disney fod",
+  "すぱいふぁみりー":"unext dmm lemino danime prime disney hulu abema netflix fod",
+  "おしのこ":"unext dmm lemino danime prime disney hulu abema netflix fod",
+  "ぼっちざろっく":"unext dmm prime netflix hulu",
+  "けいおん":"unext dmm danime prime abema",
+  "らぶらいぶ":"unext dmm danime prime abema",
+  "はいきゅー":"dmm unext hulu danime lemino prime disney abema netflix fod",
+  "くろこのばすけ":"unext dmm danime lemino hulu netflix prime",
+  "ぶるーろっく":"unext dmm danime prime disney hulu abema netflix",
+  "すらむだんく":"dmm unext netflix hulu danime abema",
+  "よわむしぺだる":"unext dmm lemino danime prime hulu netflix fod",
+  "りぜろからはじめるいせかいせいかつ":"unext dmm prime hulu abema danime",
+  "てんせいしたらすらいむだったけん":"unext dmm danime prime abema hulu netflix disney",
+  "このすばらしいせかいにしゅくふくを":"unext dmm danime prime hulu abema netflix fod",
+  "むしょくてんせい":"unext dmm danime prime disney hulu abema netflix fod",
+  "そーどあーとおんらいん":"unext dmm lemino danime prime disney hulu abema netflix fod",
+  "おーばーろーど":"dmm unext danime netflix hulu disney abema fod",
+  "たてのゆうしゃのなりあがり":"unext dmm lemino danime prime disney hulu abema netflix fod",
+  "だんじょんめし":"unext dmm",
+  "まほうしょうじょまどかまぎか":"unext danime dmm netflix abema lemino fod hulu prime",
+  "しゅたいんずげーと":"dmm danime unext lemino prime hulu abema netflix fod",
+  "こーどぎあすはんぎゃくのるるーしゅ":"unext dmm danime prime abema netflix",
+  "しんせいきえゔぁんげりおん":"dmm prime netflix",
+  "きどうせんしがんだむすいせいのまじょ":"unext dmm danime prime",
+  "てんげんとっぱぐれんらがん":"unext dmm danime prime hulu",
+  "さいばーぱんくえっじらんなーず":"netflix",
+  "さいこぱす":"unext dmm danime prime hulu abema netflix fod",
+  "ですのーと":"unext dmm danime abema hulu netflix",
+  "やくそくのねばーらんど":"unext dmm lemino danime prime hulu fod",
+  "めいたんていこなん":"dmm unext prime netflix hulu disney fod",
+  "ひょうか":"unext dmm lemino danime prime hulu",
+  "もぶさいこ":"unext hulu fod netflix prime",
+  "わんぱんまん":"unext dmm danime prime disney hulu netflix abema",
+  "ぎんたま":"dmm unext hulu abema fod danime",
+  "さいきくすおのさいなん":"netflix",
+  "かぐやさまはこくらせたい":"dmm unext prime danime hulu netflix abema fod",
+  "ごとうぶんのはなよめ":"unext dmm prime",
+  "からかいじょうずのたかぎさん":"dmm danime unext prime netflix",
+  "せいしゅんぶたやろう":"dmm unext netflix disney prime",
+  "しがつはきみのうそ":"netflix unext hulu",
+  "くらなど":"unext dmm",
+  "あのひみたはなのなまえを":"hulu unext prime netflix",
+  "ゔぁいおれっとえゔぁーがーでん":"netflix",
+  "ひびけゆーふぉにあむ":"unext danime dmm hulu prime lemino fod abema netflix disney",
+  "ゆるきゃん":"unext danime dmm prime abema hulu fod netflix",
+  "のんのんびより":"unext",
+  "なつめゆうじんちょう":"unext dmm lemino danime prime hulu netflix fod",
+  "さんがつのらいおん":"unext",
+  "ちはやふる":"unext dmm",
+  "とうきょうりべんじゃーず":"disney unext dmm",
+  "とうきょうぐーる":"dmm unext danime lemino hulu netflix",
+  "ぶんごうすとれいどっぐす":"dmm unext danime lemino",
+  "ぼくだけがいないまち":"unext hulu",
+  "しょうじょしゅうまつりょこう":"unext dmm lemino danime prime hulu",
+  "めいどいんあびす":"dmm unext prime lemino danime hulu netflix fod",
+  "まほうつかいのよめ":"unext dmm lemino danime prime hulu netflix",
+  "だんだだん":"unext dmm lemino danime prime disney hulu abema netflix fod",
+  "かいじゅうはちごう":"unext dmm lemino danime prime disney hulu abema netflix fod",
+  "うまむすめぷりてぃーだーびー":"unext dmm lemino danime fod",
+  "ぞんびらんどさが":"unext dmm danime lemino prime hulu fod",
+  "そらよりもとおいばしょ":"unext dmm danime prime hulu netflix fod",
+  "えいてぃしっくす":"unext dmm danime lemino prime hulu abema fod",
+  "ゔぃんらんどさが":"unext dmm lemino danime prime hulu netflix fod",
+  "ごーるでんかむい":"unext dmm lemino danime prime hulu netflix fod",
+  "こばやしさんちのめいどらごん":"unext hulu netflix danime",
+  "すきっぷとろーふぁー":"unext dmm danime hulu abema netflix fod",
+  "そのきせかえにんぎょうはこいをする":"unext dmm lemino danime abema hulu prime netflix fod",
+  "ぼくのこころのやばいやつ":"unext dmm lemino danime prime hulu netflix fod",
+  "あおのはこ":"dmm unext danime hulu netflix prime",
+  "ばけものがたり":"unext dmm danime prime hulu",
+  "ひぐらしのなくころに":"unext dmm",
+  "あなざー":"unext dmm lemino danime prime hulu",
+  "きせいじゅう":"unext dmm danime prime hulu abema netflix",
+  "どくたーすとーん":"unext dmm lemino danime prime disney hulu abema netflix fod",
+  "ぶりーち":"unext dmm lemino danime prime disney hulu netflix fod",
+  "どらごんぼーる":"dmm unext netflix hulu danime",
+  "じょじょのきみょうなぼうけん":"dmm unext danime prime hulu netflix",
+  "ふぇいとぜろ":"dmm unext danime fod",
+  "とあるかがくのれーるがん":"dmm unext danime hulu abema fod",
+  "まけひろいんがおおすぎる":"unext hulu netflix prime",
+  "りこりすりこいる":"unext dmm lemino danime prime hulu netflix",
+  "いせかいおじさん":"unext dmm lemino danime prime hulu abema netflix fod",
+  "かげのじつりょくしゃになりたくて":"unext dmm danime prime disney hulu abema netflix fod",
+  "じばくしょうねんはなこくん":"dmm unext prime abema hulu netflix fod",
+  "ぶるーぴりおど":"netflix",
+  "えいぞうけんにはてをだすな":"unext dmm danime hulu netflix fod",
+  "ぎんのさじ":"unext danime dmm hulu fod",
+  "あいどりっしゅせぶん":"unext dmm danime prime",
+  "きみにとどけ":"unext dmm danime prime hulu netflix",
+  "とらどら":"unext dmm lemino danime hulu",
+  "ふるーつばすけっと":"unext dmm danime hulu fod",
+  "さまーたいむれんだ":"unext dmm danime hulu netflix disney",
+  "おれだけれべるあっぷなけん":"unext dmm lemino danime prime disney hulu abema netflix fod",
+  "まっしゅる":"unext dmm lemino danime prime disney hulu netflix",
+  "さかもとでいず":"unext dmm danime abema netflix",
+  "めだりすと":"disney unext danime dmm hulu netflix fod",
+  "あおあし":"unext dmm danime prime hulu netflix fod",
+  "だいやのえーす":"unext dmm danime lemino abema hulu fod disney netflix",
+  "ゆーりおんあいす":"unext danime dmm",
+  "ふりー":"dmm unext danime",
+  "ぴんぽん":"netflix hulu unext",
+  "かぜがつよくふいている":"unext",
+  "はじめのいっぽ":"unext dmm lemino danime prime hulu netflix",
+  "てにすのおうじさま":"unext dmm lemino hulu",
+  "ほんずきのげこくじょう":"unext dmm lemino danime prime hulu abema fod",
+  "のーげーむのーらいふ":"unext hulu",
+  "ようじょせんき":"unext dmm lemino danime prime hulu abema netflix fod",
+  "くもですがなにか":"unext dmm lemino danime hulu abema netflix fod",
+  "とんでもすきるでいせかいほうろうめし":"unext dmm danime abema hulu netflix prime lemino disney fod",
+  "おとめげーむのはめつふらぐ":"",
+  "しゃんぐりらふろんてぃあ":"unext dmm",
+  "がーるずばんどくらい":"dmm unext danime hulu",
+  "よるのくらげはおよげない":"unext dmm netflix hulu prime",
+  "ばんどりまいご":"unext hulu prime danime fod",
+  "うたのぷりんすさまっ":"unext danime dmm hulu fod",
+  "あいどるますたー":"",
+  "のだめかんたーびれ":"unext dmm danime prime hulu fod",
+  "さかみちのあぽろん":"unext dmm prime hulu fod",
+  "なな":"unext dmm danime prime hulu netflix",
+  "ごちゅうもんはうさぎですか":"unext hulu prime danime",
+  "ばらかもん":"unext",
+  "あまあまといなずま":"unext",
+  "にちじょう":"unext dmm danime prime hulu lemino",
+  "るりのほうせき":"prime hulu netflix danime",
+  "むしし":"unext dmm danime prime",
+  "おうらんこうこうほすとぶ":"unext dmm danime prime hulu abema netflix",
+  "くろしつじ":"unext dmm danime netflix disney hulu",
+  "おそまつさん":"dmm unext netflix",
+  "わたしのしあわせなけっこん":"unext dmm danime hulu netflix prime",
+  "ほりみや":"unext dmm danime prime hulu abema netflix fod",
+  "ゆびさきとれんれん":"unext abema dmm netflix hulu disney prime",
+  "がちあくた":"unext dmm danime abema prime disney fod netflix",
+  "たこぴーのげんざい":"dmm unext prime danime hulu netflix disney fod lemino abema",
+  "ひかるがしんだなつ":"netflix abema unext prime disney",
+  "うぃっちうぉっち":"unext dmm lemino prime disney hulu abema netflix fod",
+  "かたいなかのおっさんけんせいになる":"prime unext dmm danime",
+  "あぽかりぷすほてる":"unext dmm abema lemino hulu prime",
+  "ろしでれ":"unext dmm hulu prime",
+  "しょうしみんしりーず":"unext dmm danime hulu abema lemino fod",
+  "よふかしのうた":"unext dmm danime prime hulu abema netflix fod",
+  "かうぼーいびばっぷ":"unext dmm danime prime netflix",
+  "こうかくきどうたい":"unext danime netflix hulu prime",
+  "すずみやはるひのゆううつ":"unext dmm hulu netflix danime",
+  "ゆうゆうはくしょ":"netflix hulu unext",
+  "るろうにけんしん":"unext danime dmm netflix hulu prime lemino fod",
+  "かーどきゃぷたーさくら":"unext danime dmm hulu prime fod",
+  "めじゃー":"dmm unext abema lemino hulu",
+  "あひるのそら":"unext netflix prime hulu",
+  "えすけーえいと":"unext dmm danime prime",
+  "おおきくふりかぶって":"unext hulu dmm",
+  "いにしゃるでぃー":"unext dmm lemino danime prime hulu abema",
+  "たっち":"unext dmm danime abema",
+  "べいびーすてっぷ":"unext",
+  "ありふれたしょくぎょうでせかいさいきょう":"unext dmm danime prime hulu netflix fod",
+  "ろぐほらいずん":"unext hulu",
+  "まおうがくいんのふてきごうしゃ":"unext dmm danime prime hulu netflix fod",
+  "いせかいしょくどう":"unext dmm lemino prime hulu abema fod",
+  "ぜろのつかいま":"prime",
+  "てんせいしたらけんでした":"unext dmm danime hulu abema netflix fod",
+  "つきがみちびくいせかいどうちゅう":"unext netflix dmm",
+  "やはりおれのせいしゅんらぶこめは":"dmm danime unext",
+  "にせこい":"unext prime",
+  "こみさんはこみゅしょうです":"netflix",
+  "かおるはなはりんとさく":"unext dmm danime netflix hulu prime abema lemino disney fod",
+  "きみはほうかごいんそむにあ":"unext dmm danime hulu",
+  "このおとまれ":"unext dmm danime prime hulu fod",
+  "まくろすふろんてぃあ":"netflix disney",
+  "らぶらいぶさんしゃいん":"unext dmm danime prime abema",
+  "しろばこ":"unext hulu prime",
+  "やまのすすめ":"unext dmm danime prime fod",
+  "らきすた":"unext dmm",
+  "あずまんがだいおう":"prime unext",
+  "ありあ":"prime unext",
+  "ふらいんぐうぃっち":"unext dmm danime prime hulu",
+  "えんえんのしょうぼうたい":"unext dmm lemino danime prime hulu netflix fod",
+  "ぶらっくくろーばー":"unext dmm lemino danime prime hulu netflix fod",
+  "ななつのたいざい":"unext dmm danime prime hulu abema netflix",
+  "どろろ":"unext dmm danime prime hulu abema netflix fod",
+  "じごくらく":"unext dmm lemino danime hulu netflix",
+  "ごぶりんすれいやー":"unext dmm lemino danime prime hulu abema fod",
+  "あじん":"unext hulu netflix",
+  "ちきゅうのうんどうについて":"dmm unext prime fod lemino abema hulu netflix",
+  "きょこうすいり":"unext dmm danime lemino",
+  "でゅららら":"unext hulu prime",
+  "もののけ":"dmm unext danime hulu fod",
+  "ぷるとぅ":"netflix",
+  "ゔぃゔぃ":"dmm unext danime",
+  "とらいがん":"unext",
+  "きどうせんしがんだむしーど":"unext danime prime dmm",
+  "まいりましたいるまくん":"unext dmm danime prime hulu abema",
+  "はたらくまおうさま":"unext dmm lemino danime prime disney hulu",
+  "ぐらんぶる":"unext dmm lemino danime prime disney hulu netflix fod",
+  "げっかんしょうじょのざきくん":"unext abema",
+  "さいれんとうぃっち":"unext dmm lemino danime prime disney hulu abema netflix",
+  "あるまじょがしぬまで":"prime hulu danime"
+};
+const TAG_OK = /^[A-Za-z0-9_-]{2,40}$/;
+const AFF_OK = /^https:\/\/[^\s"'<>]+$/;
+function watchLink(s, title, watch){
+  let url = s.search(encodeURIComponent(title)), ad = false;
+  if (s.aff === "amazon"){
+    const tag = watch.amazonTag.trim();
+    if (TAG_OK.test(tag)){ url += "&tag=" + encodeURIComponent(tag); ad = true; }
+  } else if (s.aff === "link"){
+    const aff = (watch.aff[s.key] || "").trim();
+    if (AFF_OK.test(aff)){ url = aff.includes("{url}") ? aff.split("{url}").join(encodeURIComponent(url)) : aff; ad = true; }
+  }
+  return { url, ad };
+}
+/* その作品を見放題で見られるサービスを、広告リンクのあるものから順に並べる。見つからない作品は null */
+function watchList(a, watch){
+  const keys = (AVAIL[a.id] || "").split(" ").filter(k => BY_SVC[k]);
+  if (!keys.length) return null;
+  const rank = l => l.ad ? 0 : l.s.aff ? 1 : 2;
+  return SERVICES.filter(s => keys.includes(s.key))
+    .map((s, i) => Object.assign({ s, i }, watchLink(s, a.t, watch)))
+    .sort((x, y) => rank(x) - rank(y) || x.i - y.i);
+}
+function hasAds(watch){ return TAG_OK.test(watch.amazonTag.trim()) || AFF_SERVICES.some(s => AFF_OK.test((watch.aff[s.key] || "").trim())); }
+/* シェアに付けるこのサイトのアドレス */
+const DEFAULT_SITE_URL = "https://claude.ai/artifact/LBAjoMZh1rQ6hFUkmyRuaq";
+function shareUrl(){ const u = SITE.siteUrl.trim(); return AFF_OK.test(u) ? u : DEFAULT_SITE_URL; }
+
+const SITE = cleanSite((() => { try { return JSON.parse(document.getElementById("site-data").textContent); } catch (e) { return {}; } })());
+const PHOTOS = SITE.photos;
+function artFor(a){
+  const v = (ART[a.id] || "").split(" ");
+  const set = v[0] || "city", pal = v[1] || GPAL[a.g[0]], motif = v[2] || GMOT[a.g[0]];
+  return scene({ w: 400, h: 200, pal, set, motif, seed: a.id, clouds: 2, fig: [.2 + rng(a.id + "f")() * .22, .45] });
+}
+
+(function(){
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const grid = $("grid"), chipsEl = $("chips"), qEl = $("q"), emptyEl = $("empty"), shownEl = $("shownCount");
+  const bar = $("bar"), selCountEl = $("selCount"), hintEl = $("barHint"), decideBtn = $("decideBtn"), clearBtn = $("clearBtn");
+  const home = $("home"), result = $("result"), toastEl = $("toast"), nav = $("nav"), burger = $("burger");
+  const adminEl = $("admin"), saveBar = $("saveBar");
+  const KEY = "anima-anime-sel";
+  let sel = new Set(), genre = "all", view = "pick", last = null, toastTimer = 0, pickVisible = false;
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify([...sel])); } catch(e) {} }
+  function load(){
+    try { const v = JSON.parse(localStorage.getItem(KEY) || "[]"); if (Array.isArray(v)) return v.filter(id => BY_ID[id]); } catch(e) {}
+    return [];
+  }
+  function toast(msg){
+    toastEl.textContent = msg; toastEl.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => { toastEl.hidden = true; }, 2600);
+  }
+
+  /* 絵 */
+  $("heroArt").innerHTML = scene({ w: 1200, h: 640, pal: "day", seed: "anima-hero", clouds: 6, planet: [.9, .17], lo: .2, hi: .44, fig: [.66, 1.25], sunX: .7 });
+  $("animeCount").textContent = ANIME.length;
+
+  /* ヘッダーのメニュー */
+  burger.addEventListener("click", () => {
+    const open = !nav.classList.contains("open");
+    nav.classList.toggle("open", open); burger.setAttribute("aria-expanded", String(open));
+  });
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener("click", () => {
+    nav.classList.remove("open"); burger.setAttribute("aria-expanded", "false");
+    const href = a.getAttribute("href");
+    if (href === "#admin"){ if (location.hash === "#admin") showAdmin(); }
+    else if (view !== "pick") showPicker(false);
+  }));
+  /* 載せた画像が読めないときは、イラストに戻す */
+  document.addEventListener("error", e => {
+    const t = e.target;
+    if (t && t.tagName === "IMG" && t.dataset.id && BY_ID[t.dataset.id] && t.closest(".rec-art")) t.parentElement.innerHTML = artFor(BY_ID[t.dataset.id]);
+  }, true);
+  /* 広告の表示（ステマ規制への対応） */
+  if (hasAds(SITE.watch)){
+    $("adNote").textContent = "このサイトはアフィリエイト広告を利用しています。" + (TAG_OK.test(SITE.watch.amazonTag.trim()) ? "Amazonのアソシエイトとして、ANIMAは適格販売により収入を得ています。" : "");
+    $("adNote").hidden = false;
+    $("prBar").hidden = false;
+  }
+
+  /* 診断メニュー */
+  const MENU = [
+    { g: "all",     name: "ジャンル診断", pal: "day",    set: "city",   motif: "star" },
+    { g: "mystery", name: "考察診断",     pal: "night",  set: "city",   motif: "glass" },
+    { g: "youth",   name: "青春診断",     pal: "sunset", set: "school", motif: "flower" },
+    { g: "love",    name: "恋愛診断",     pal: "pink",   set: "school", motif: "heart" },
+    { g: "battle",  name: "バトル診断",   pal: "ember",  set: "city",   motif: "sword" },
+    { g: "slice",   name: "癒し系診断",   pal: "mint",   set: "field",  motif: "cup" }
+  ];
+  $("menuGrid").innerHTML = MENU.map((m, i) => {
+    const n = m.g === "all" ? ANIME.length : ANIME.filter(a => a.g.includes(m.g)).length;
+    const desc = m.g === "all" ? `全${n}作品から選ぶ` : `${GENRES[m.g].n}の${n}作品から選ぶ`;
+    return `<button type="button" class="menu-item" data-g="${m.g}">
+      <span class="menu-art">${scene({ w: 400, h: 300, pal: m.pal, set: m.set, motif: m.motif, seed: "menu" + i, clouds: 2, fig: [i % 2 ? .7 : .3, .55] })}</span>
+      <span class="menu-name">${esc(m.name)}</span><span class="menu-desc">${esc(desc)}</span></button>`;
+  }).join("");
+  $("menuGrid").addEventListener("click", e => {
+    const b = e.target.closest(".menu-item"); if (!b) return;
+    setGenre(b.dataset.g); qEl.value = ""; applyFilter();
+    $("shindan").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    toast(b.dataset.g === "all" ? "すべての作品を表示しています" : `${GENRES[b.dataset.g].n}の作品にしぼって表示しています`);
+  });
+
+  /* 作品カード */
+  const cards = {};
+  ANIME.forEach(a => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "card"; b.dataset.id = a.id; b.setAttribute("aria-pressed", "false");
+    b.innerHTML = `<span class="card-meta"><span class="card-genre">${esc(GENRES[a.g[0]].s)}</span><span class="card-year">${a.y}年</span></span>`
+      + `<span class="card-title">${esc(a.t)}</span>`
+      + `<span class="card-sub">${a.g.slice(1).map(k => esc(GENRES[k].s)).join(" / ") || "&nbsp;"}</span>`
+      + `<span class="check" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span>`;
+    grid.appendChild(b); cards[a.id] = b;
+  });
+  grid.addEventListener("click", e => {
+    const b = e.target.closest(".card"); if (!b) return;
+    const id = b.dataset.id;
+    sel.has(id) ? sel.delete(id) : sel.add(id);
+    save(); syncCards(); updateBar();
+    if (genre === "picked") applyFilter();
+  });
+
+  /* ジャンルのしぼりこみ */
+  const chipDefs = [["all", "すべて"], ["picked", "選んだ作品"]].concat(GK.map(k => [k, GENRES[k].n]));
+  chipsEl.innerHTML = chipDefs.map(([k, n]) => `<button type="button" class="chip" data-g="${k}" aria-pressed="${k === "all"}">${esc(n)}${k === "picked" ? '<span class="n" id="pickedN">0</span>' : ""}</button>`).join("");
+  function setGenre(g){
+    genre = g;
+    chipsEl.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.g === g)));
+  }
+  chipsEl.addEventListener("click", e => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    setGenre(c.dataset.g); applyFilter();
+  });
+  qEl.addEventListener("input", applyFilter);
+
+  function applyFilter(){
+    const q = norm(qEl.value);
+    let n = 0;
+    ANIME.forEach(a => {
+      const ok = (genre === "all" || (genre === "picked" ? sel.has(a.id) : a.g.includes(genre))) && (!q || a.s.includes(q));
+      cards[a.id].hidden = !ok; if (ok) n++;
+    });
+    shownEl.textContent = n === ANIME.length ? `全${ANIME.length}作品` : `${n}作品を表示中（全${ANIME.length}作品）`;
+    if (n === 0){
+      emptyEl.hidden = false;
+      emptyEl.textContent = genre === "picked" && !q ? "まだ作品を選んでいません。「すべて」に戻して、好きな作品をタップしてください。"
+        : "合う作品が見つかりませんでした。ひらがなで入れるか、ジャンルを「すべて」に戻して探してみてください。";
+    } else emptyEl.hidden = true;
+  }
+  function syncCards(){ ANIME.forEach(a => cards[a.id].setAttribute("aria-pressed", String(sel.has(a.id)))); }
+  function syncBar(){ bar.hidden = view !== "pick" || !(pickVisible || sel.size > 0); }
+  function updateBar(){
+    const n = sel.size;
+    selCountEl.textContent = n;
+    const pn = $("pickedN"); if (pn) pn.textContent = n;
+    decideBtn.disabled = n === 0; clearBtn.disabled = n === 0;
+    if (n === 0) hintEl.textContent = "好きな作品をタップして選んでね";
+    else if (n < 3) hintEl.textContent = `あと${3 - n}作品選ぶと、診断がもっと正確になります`;
+    else hintEl.textContent = [...sel].map(id => BY_ID[id].t).join("、");
+    syncBar();
+  }
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(es => { pickVisible = es[0].isIntersecting; syncBar(); }, { rootMargin: "0px 0px -35% 0px" }).observe($("shindan"));
+  } else pickVisible = true;
+  clearBtn.addEventListener("click", () => { sel.clear(); save(); syncCards(); updateBar(); applyFilter(); toast("選んだ作品をクリアしました"); });
+  decideBtn.addEventListener("click", () => { if (sel.size) showResult(true); });
+
+  /* 結果 */
+  function recCard(c){
+    const ph = PHOTOS[c.a.id];
+    const found = watchList(c.a, SITE.watch);
+    /* 見放題が見つからなかった作品は、主なサービスの検索リンクだけ出す */
+    const links = found || ["prime", "unext", "dmm"].map(k => Object.assign({ s: BY_SVC[k] }, watchLink(BY_SVC[k], c.a.t, SITE.watch)));
+    const anyAd = links.some(l => l.ad);
+    return `<article class="rec">
+      <div class="rec-art">${ph ? `<img src="/_blob/${esc(ph.a)}" alt="${esc(c.a.t)}のイメージ画像" loading="lazy" data-id="${esc(c.a.id)}">` : artFor(c.a)}</div>
+      <div class="rec-body">
+        <div class="rec-top"><span class="match">相性 <b>${c.match}</b>%</span><span class="rec-year">${c.a.y}年〜</span></div>
+        <h4 class="rec-title">${esc(c.a.t)}</h4>
+        <p class="rec-desc">${esc(c.a.d)}</p>
+        <p class="rec-tags">${c.a.g.map(k => `<span>${esc(GENRES[k].s)}</span>`).join("")}</p>
+        ${c.because ? `<p class="rec-why">「${esc(c.because.t)}」が好きなあなたに</p>` : ""}
+        <div class="watch">
+          <p class="watch-h">${found ? "見放題で見られるサービス" : "配信サービスで探す"}${anyAd ? '<span class="ad">広告</span>' : ""}</p>
+          <div class="watch-links">${links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="${l.ad ? "sponsored noopener" : "noopener"}">${esc(l.s.name)}</a>`).join("")}</div>
+          <p class="watch-note">${found ? `${AVAIL_DATE}に調べた情報です（おもに1期）。配信は変わることがあるので、各サービスのページで確かめてください` : "見放題の配信が見つかりませんでした。各サービスのページで探してみてください"}</p>
+        </div>
+        <a class="rec-link" href="https://www.google.com/search?q=${encodeURIComponent(c.a.t + " アニメ")}" target="_blank" rel="noopener">くわしく調べる ↗</a>
+        ${ph && ph.credit ? `<p class="credit">画像：${esc(ph.credit)}</p>` : ""}
+      </div>
+    </article>`;
+  }
+  function showResult(fresh){
+    const r = compute([...sel]); if (!r) return;
+    last = r;
+    const T = GENRES[r.top];
+    $("typeArt").innerHTML = scene({ w: 1200, h: 560, pal: GPAL[r.top], set: GSET[r.top], motif: GMOT[r.top], seed: "type-" + r.top, clouds: 5, lo: .22, hi: .5, fig: [.88, 1.15], badge: [.72, .3] });
+    const nameEl = $("typeName");
+    nameEl.innerHTML = (r.mod ? `<span class="mod">${esc(r.mod)}</span>` : "") + `<span class="main">${esc(T.type)}</span>`;
+    $("typeDesc").textContent = T.d;
+    $("pickedLine").innerHTML = `<span class="lbl">選んだ作品（${r.picked.length}）</span>` + r.picked.map(a => `<span class="pk">${esc(a.t)}</span>`).join("");
+    const max = r.order[0].pct;
+    $("bars").innerHTML = r.order.slice(0, 6).map(o =>
+      `<li><span class="b-label">${esc(GENRES[o.k].n)}</span><span class="b-fill" style="width:${(o.pct / max * 100).toFixed(1)}%"></span><span class="b-pct">${Math.round(o.pct)}%</span></li>`).join("");
+    $("recs").innerHTML = r.sections.map(s => `<section class="rec-sec">
+      <div class="rec-head"><span class="rank">${s.rank}位</span><div><h3 class="rec-genre">${esc(GENRES[s.k].n)}</h3><p class="rec-note">好きなジャンル${s.rank}位のあなたへのおすすめ</p></div></div>
+      ${s.list.length ? `<div class="rec-grid">${s.list.map(recCard).join("")}</div>`
+        : `<p class="empty">このジャンルの作品は、もうほとんど選ばれていました。ほかのジャンルもチェックしてみてください。</p>`}
+    </section>`).join("");
+    $("copyArea").hidden = true;
+    $("tweetBtn").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetText(r)) + "&url=" + encodeURIComponent(shareUrl());
+    view = "result";
+    home.hidden = true; result.hidden = false; adminEl.hidden = true; saveBar.hidden = true; syncBar();
+    if (fresh){
+      nameEl.classList.remove("pop"); void nameEl.offsetWidth; nameEl.classList.add("pop");
+      window.scrollTo(0, 0);
+    }
+  }
+  function showPicker(scrollToPick){
+    view = "pick";
+    home.hidden = false; result.hidden = true; adminEl.hidden = true; saveBar.hidden = true; syncBar();
+    if (scrollToPick) $("shindan").scrollIntoView();
+  }
+  $("backBtn").addEventListener("click", () => showPicker(true));
+  $("retryBtn").addEventListener("click", () => {
+    sel.clear(); save(); syncCards(); updateBar();
+    qEl.value = ""; setGenre("all"); applyFilter(); showPicker(false); window.scrollTo(0, 0);
+  });
+
+  /* X（旧Twitter）用の文章。日本語は1文字=2として280以内におさめる。
+     サイトのアドレスは url= で別に付ける（Xではアドレスは長さに関係なく23文字分） */
+  function wlen(s){ let n = 0; for (const ch of s) n += ch.codePointAt(0) < 0x1100 ? 1 : 2; return n; }
+  const INVITE = "好きなアニメを選ぶだけで、あなたのタイプとおすすめがわかるよ👇";
+  function tweetText(r){
+    const head = `わたしのアニメタイプは「${r.mod}${GENRES[r.top].type}」でした！`;
+    const tag = "#ANIMAアニメ診断";
+    const recs = r.sections.map(s => s.list[0]).filter(Boolean).map(c => c.a.t);
+    const build = rec => head + (rec ? `\nおすすめされた作品：${rec}` : "") + `\n${INVITE}\n${tag}`;
+    let rec = "";
+    for (const t of recs){
+      const next = rec ? rec + "、" + t : t;
+      if (wlen(build(next)) + 24 > 270) break;
+      rec = next;
+    }
+    return build(rec);
+  }
+  function resultText(r){
+    const lines = ["【ANIMA アニメ診断】", `わたしのタイプは「${r.mod}${GENRES[r.top].type}」`, "選んだ作品：" + r.picked.map(a => a.t).join("、"), "おすすめ："];
+    r.sections.forEach(s => { if (s.list.length) lines.push(`・${GENRES[s.k].n} → ${s.list.map(c => c.a.t).join("、")}`); });
+    lines.push("", "あなたも診断してみてね → " + shareUrl());
+    return lines.join("\n");
+  }
+  $("copyBtn").addEventListener("click", () => {
+    if (!last) return;
+    const text = resultText(last), area = $("copyArea");
+    const fallback = () => {
+      area.value = text; area.hidden = false; area.focus(); area.select();
+      let ok = false; try { ok = document.execCommand("copy"); } catch(e) {}
+      toast(ok ? "結果をコピーしました" : "下の文章を長押しして、コピーしてください");
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(() => toast("結果をコピーしました"), fallback);
+    } else fallback();
+  });
+
+  /* ---------- 管理ページ（持ち主だけ） ---------- */
+  const STASH = "anima-admin-draft";
+  let assetsNs = null, artifactNs = null, capsReady = false, isEditor = false, draft = null, cleanupArmed = 0;
+  const lockEl = $("adminLock"), bodyEl = $("adminBody"), listEl = $("adminList"), saveBtn = $("saveBtn"), saveState = $("saveState");
+  const saved = () => JSON.stringify({ photos: PHOTOS, watch: SITE.watch, siteUrl: SITE.siteUrl });
+  const isDirty = () => !!draft && JSON.stringify(draft) !== saved();
+  /* 広告リンクの欄は、広告の仕組みがあるサービスの数だけ作る */
+  $("affFields").innerHTML = AFF_SERVICES.map(s => `<label class="field" for="aff-${s.key}"><span>${esc(s.name)} の広告リンク</span><input id="aff-${s.key}" data-key="${s.key}" type="url" autocomplete="off" spellcheck="false" placeholder="https://..."><span class="field-err" id="aff-${s.key}Err" hidden>https:// から始まるリンクを入れてください</span></label>`).join("");
+  function fieldsValid(){
+    const t = draft.watch.amazonTag.trim(), u = draft.siteUrl.trim();
+    const ok = { affPrime: !t || TAG_OK.test(t), siteUrl: !u || AFF_OK.test(u) };
+    AFF_SERVICES.forEach(s => { const v = draft.watch.aff[s.key].trim(); ok["aff-" + s.key] = !v || AFF_OK.test(v); });
+    Object.entries(ok).forEach(([k, v]) => { $(k + "Err").hidden = v; });
+    return Object.values(ok).every(Boolean);
+  }
+  function refreshSave(msg){
+    const dirty = isDirty(), valid = fieldsValid();
+    /* 保存していない変更は、ページが読み込み直されても消えないように取っておく */
+    try { if (dirty) sessionStorage.setItem(STASH, JSON.stringify(cleanSite(draft))); else sessionStorage.removeItem(STASH); } catch (e) {}
+    saveBtn.disabled = !dirty || !valid;
+    saveState.textContent = msg || (!dirty ? "変更はありません" : valid ? "保存していない変更があります" : "入力にまちがいがあります");
+  }
+  function initDraft(){
+    draft = JSON.parse(saved());
+    let stash = null;
+    try { stash = JSON.parse(sessionStorage.getItem(STASH) || "null"); } catch (e) {}
+    if (stash){
+      const s = cleanSite(stash);
+      if (JSON.stringify(s) === saved()) { try { sessionStorage.removeItem(STASH); } catch (e) {} }
+      else { draft = s; toast("保存する前の変更を戻しました"); }
+    }
+    $("affPrime").value = draft.watch.amazonTag;
+    AFF_SERVICES.forEach(s => { $("aff-" + s.key).value = draft.watch.aff[s.key]; });
+    $("siteUrl").value = draft.siteUrl;
+  }
+  $("affPrime").addEventListener("input", e => { if (!draft) return; draft.watch.amazonTag = e.target.value.trim(); refreshSave(); });
+  $("siteUrl").addEventListener("input", e => { if (!draft) return; draft.siteUrl = e.target.value.trim(); refreshSave(); });
+  /* 広告サービスのコードをそのまま貼っても、リンクのアドレスだけを取り出す。// から始まるものには https: を付ける */
+  function cleanAff(v){
+    v = String(v).trim();
+    const m = v.match(/href\s*=\s*["']([^"']+)["']/i);
+    if (m) v = m[1].replace(/&amp;/g, "&");
+    if (v.startsWith("//")) v = "https:" + v;
+    return v.trim();
+  }
+  $("affFields").addEventListener("input", e => {
+    const k = e.target.dataset && e.target.dataset.key;
+    if (!draft || !k) return;
+    const v = cleanAff(e.target.value);
+    if (v !== e.target.value.trim()){ e.target.value = v; toast("広告のコードから、リンクのアドレスだけを取り出しました"); }
+    draft.watch.aff[k] = v; refreshSave();
+  });
+
+  function rowHtml(a, i){
+    const p = draft.photos[a.id];
+    return `<li class="arow" data-id="${esc(a.id)}">
+      <div class="athumb">${p ? `<img src="/_blob/${esc(p.a)}" alt="" loading="lazy">` : "画像なし"}</div>
+      <div class="ainfo"><b>${esc(a.t)}</b>
+        <label class="sr" for="cr-${i}">${esc(a.t)}の出典</label>
+        <input class="acredit" id="cr-${i}" type="text" maxlength="120" placeholder="出典（例：撮影 〇〇 / CC BY 4.0）" value="${p ? esc(p.credit) : ""}" ${p ? "" : "disabled"}>
+        <span class="astatus" hidden></span>
+      </div>
+      <div class="aact">
+        <label class="btn small" for="fi-${i}">${p ? "画像を変える" : "画像を選ぶ"}</label>
+        <input class="sr afile" id="fi-${i}" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+        ${p ? `<button type="button" class="btn plain small aremove">外す</button>` : ""}
+      </div>
+    </li>`;
+  }
+  function renderAdmin(){
+    const q = norm($("adminQ").value), only = $("adminOnly").checked;
+    const rows = ANIME.map((a, i) => [a, i]).filter(([a]) => (!q || a.s.includes(q)) && (!only || draft.photos[a.id]));
+    listEl.innerHTML = rows.length ? rows.map(([a, i]) => rowHtml(a, i)).join("") : `<li class="admin-help">合う作品がありません</li>`;
+    refreshSave();
+  }
+  function rerenderRow(id){
+    const li = listEl.querySelector(`.arow[data-id="${CSS.escape(id)}"]`);
+    if (!li) return;
+    const i = ANIME.findIndex(a => a.id === id);
+    li.outerHTML = rowHtml(ANIME[i], i);
+  }
+  $("adminQ").addEventListener("input", () => draft && renderAdmin());
+  $("adminOnly").addEventListener("change", () => draft && renderAdmin());
+
+  async function shrink(file){
+    if (!/^image\/(png|jpeg|webp|gif)$/.test(file.type)) throw { code: "unsupported_type" };
+    if (file.size <= 700e3 || !window.createImageBitmap) return file;
+    const bmp = await createImageBitmap(file);
+    const k = Math.min(1, 1280 / bmp.width);
+    const c = document.createElement("canvas");
+    c.width = Math.round(bmp.width * k); c.height = Math.round(bmp.height * k);
+    c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+    if (bmp.close) bmp.close();
+    return await new Promise((ok, ng) => c.toBlob(b => b ? ok(b) : ng({ code: "encode" }), "image/jpeg", .85));
+  }
+  const UPLOAD_MSG = {
+    unsupported_type: "この形式は使えません（PNG・JPEG・WebP・GIF）",
+    too_large: "画像が大きすぎます",
+    quota_or_state: "保存できる量がいっぱいです。使っていない画像を削除してください",
+    rate_limited: "少し待ってから、もう一度選んでください",
+    upstream_auth: "ページを読み込み直して、もう一度選んでください"
+  };
+  /* 1枚の画像を、その作品の行に入れる（「画像を選ぶ」とドラッグの両方で使う） */
+  async function uploadTo(li, file){
+    if (!li || !draft || !file || !assetsNs) return;
+    const id = li.dataset.id;
+    const st = li.querySelector(".astatus");
+    st.hidden = false; st.textContent = "アップロードしています…";
+    try {
+      const blob = await shrink(file);
+      const r = await assetsNs.upload(blob, { type: blob.type || "image/jpeg" });
+      draft.photos[id] = { a: r.id, credit: draft.photos[id] ? draft.photos[id].credit : "" };
+      rerenderRow(id); refreshSave();
+      toast("画像を入れました。出典を書いて「保存して公開」を押してください");
+    } catch (err) {
+      st.textContent = UPLOAD_MSG[err && err.code] || "アップロードできませんでした。もう一度選んでください";
+    }
+  }
+  listEl.addEventListener("change", e => {
+    const inp = e.target;
+    if (inp.classList.contains("afile")) uploadTo(inp.closest(".arow"), inp.files && inp.files[0]);
+  });
+  /* ドラッグで入れる。行の上に来たら色を変え、落としたらアップロード */
+  const hasFiles = e => !!e.dataTransfer && Array.from(e.dataTransfer.types || []).includes("Files");
+  let dropRow = null;
+  const markDrop = li => { if (dropRow === li) return; if (dropRow) dropRow.classList.remove("drop"); dropRow = li; if (li) li.classList.add("drop"); };
+  listEl.addEventListener("dragover", e => {
+    if (!hasFiles(e) || !draft) return;
+    e.preventDefault();
+    const li = e.target.closest(".arow");
+    e.dataTransfer.dropEffect = li ? "copy" : "none";
+    markDrop(li);
+  });
+  listEl.addEventListener("dragleave", e => { if (!listEl.contains(e.relatedTarget)) markDrop(null); });
+  listEl.addEventListener("drop", e => {
+    if (!hasFiles(e)) return;
+    e.preventDefault();
+    const li = e.target.closest(".arow");
+    markDrop(null);
+    const files = Array.from(e.dataTransfer.files || []);
+    if (!li){ toast("作品の行の上に落としてください"); return; }
+    const img = files.find(f => /^image\//.test(f.type));
+    if (!img){ toast("画像のファイルを落としてください（PNG・JPEG・WebP・GIF）"); return; }
+    if (files.length > 1) toast("1枚目の画像だけを入れます");
+    uploadTo(li, img);
+  });
+  /* 行の外に落としたとき、ブラウザが画像を開いてページから出てしまわないようにする */
+  ["dragover", "drop"].forEach(t => window.addEventListener(t, e => {
+    if (view !== "admin" || !hasFiles(e) || listEl.contains(e.target)) return;
+    e.preventDefault();
+    if (t === "drop"){ markDrop(null); toast("作品の行の上に落としてください"); }
+  }));
+  listEl.addEventListener("input", e => {
+    const li = e.target.closest(".arow");
+    if (!li || !draft || !e.target.classList.contains("acredit")) return;
+    const p = draft.photos[li.dataset.id];
+    if (p){ p.credit = e.target.value.slice(0, 120); refreshSave(); }
+  });
+  listEl.addEventListener("click", e => {
+    const b = e.target.closest(".aremove"), li = b && b.closest(".arow");
+    if (!li || !draft) return;
+    delete draft.photos[li.dataset.id];
+    rerenderRow(li.dataset.id); refreshSave();
+  });
+
+  /* 使っていない画像の整理（2回押しで実行） */
+  $("cleanupBtn").addEventListener("click", async () => {
+    if (!assetsNs) return;
+    const btn = $("cleanupBtn");
+    try {
+      const { assets, usage } = await assetsNs.list();
+      const keep = new Set([...Object.values(PHOTOS), ...Object.values(draft.photos)].map(p => p.a));
+      const unused = assets.filter(x => !keep.has(x.id));
+      if (!unused.length){ toast("使っていない画像はありません"); btn.textContent = "使っていない画像を削除する"; cleanupArmed = 0; return; }
+      if (cleanupArmed !== unused.length){
+        cleanupArmed = unused.length;
+        btn.textContent = `本当に削除する（${unused.length}枚・元に戻せません）`;
+        return;
+      }
+      for (const x of unused) await assetsNs.delete(x.id);
+      cleanupArmed = 0; btn.textContent = "使っていない画像を削除する";
+      toast(`${unused.length}枚削除しました`); showUsage();
+    } catch (err) { toast("削除できませんでした。少し待ってからもう一度押してください"); }
+  });
+  async function showUsage(){
+    if (!assetsNs) return;
+    try {
+      const { usage } = await assetsNs.list();
+      $("assetUsage").textContent = `保存している画像：${usage.files}枚 / ${(usage.bytes / 1048576).toFixed(1)}MB（上限 ${(usage.maxBytes / 1048576).toFixed(0)}MB）`;
+    } catch (e) {}
+  }
+
+  /* 保存：ページの元データにサイトのデータを入れて、新しい版として公開する */
+  const RESET_CSS = ":root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.5 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
+  async function buildPage(data){
+    if (!window.DecompressionStream) throw { code: "browser" };
+    const b64 = $("page-src").textContent.trim();
+    const bytes = Uint8Array.from(atob(b64), ch => ch.charCodeAt(0));
+    const tpl = await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
+    const D = "@@" + "DATA@@", S = "@@" + "SRC@@";
+    if (!tpl.includes(D) || !tpl.includes(S)) throw { code: "template" };
+    const json = JSON.stringify(data).replace(/</g, "\\u003c").replace(/@/g, "\\u0040");
+    const content = tpl.replace(D, () => json).replace(S, () => b64);
+    return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>' + RESET_CSS + "</style></head><body>" + content + "</body></html>";
+  }
+  const SAVE_MSG = {
+    conflict: "ほかの場所で先に更新されていました。読み込み直すので、もう一度保存してください（変更は残ります）",
+    not_writer: "この画面からは保存できません。持ち主のアカウントで開いてください",
+    not_granted: "この画面からは保存できません。持ち主のアカウントで開いてください",
+    too_large: "ページが大きくなりすぎて保存できません",
+    rate_limited: "保存が続いています。少し待ってから、もう一度押してください",
+    browser: "このブラウザでは保存できません。新しいChromeかEdgeで開いてください"
+  };
+  saveBtn.addEventListener("click", async () => {
+    if (!draft || !isDirty() || !fieldsValid() || !artifactNs) return;
+    saveBtn.disabled = true; saveState.textContent = "保存しています…";
+    const data = cleanSite(draft);
+    try { sessionStorage.setItem(STASH, JSON.stringify(data)); } catch (e) {}
+    try {
+      await artifactNs.publish(await buildPage(data));
+      saveState.textContent = "保存しました。新しい版を読み込みます…";
+    } catch (err) {
+      refreshSave(SAVE_MSG[err && err.code] || "保存できませんでした。少し待ってから、もう一度押してください");
+    }
+  });
+  $("adminExit").addEventListener("click", () => { location.hash = "top"; });
+
+  function showAdmin(){
+    view = "admin";
+    home.hidden = true; result.hidden = true; adminEl.hidden = false; syncBar();
+    window.scrollTo(0, 0);
+    if (!capsReady || !isEditor){
+      lockEl.textContent = capsReady ? "管理ページは、このサイトの持ち主だけが使えます。持ち主のアカウントでログインして開いてください。" : "確認しています…";
+      lockEl.hidden = false; bodyEl.hidden = true; saveBar.hidden = true;
+      return;
+    }
+    lockEl.hidden = true; bodyEl.hidden = false; saveBar.hidden = false;
+    if (!draft) initDraft();
+    renderAdmin(); showUsage();
+  }
+  function routeAdmin(){
+    if (location.hash === "#admin") showAdmin();
+    else if (view === "admin") showPicker(false);
+  }
+  window.addEventListener("hashchange", routeAdmin);
+  (async () => {
+    const c = window.claude;
+    if (c && typeof c.use === "function"){
+      try { [assetsNs, artifactNs] = await Promise.all([c.use("assets"), c.use("artifact")]); } catch (e) {}
+    }
+    isEditor = !!assetsNs && !!artifactNs;
+    capsReady = true;
+    $("adminLink").hidden = !isEditor;
+    if (view === "admin") showAdmin();
+  })();
+
+  /* 起動 */
+  function start(data){
+    data = data || {};
+    sel = new Set((Array.isArray(data.sel) ? data.sel : load()).filter(id => BY_ID[id]));
+    if (typeof data.q === "string") qEl.value = data.q;
+    if (data.genre && chipDefs.some(([k]) => k === data.genre)) setGenre(data.genre);
+    syncCards(); updateBar(); applyFilter();
+    if (data.view === "result" && sel.size) showResult(false);
+    routeAdmin();
+  }
+  const hot = window.claude && window.claude.hot;
+  if (hot && hot.snapshot) hot.snapshot(() => ({ sel: [...sel], view, genre, q: qEl.value }));
+  if (hot && hot.ready) hot.ready(start); else start((hot && hot.data) || {});
+})();
+</script>
+</body>
+</html>
